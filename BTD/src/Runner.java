@@ -6,12 +6,17 @@ public class Runner {
 	 
 
 		System.out.println("This is TestBranch1"); 
+		test30();
 
 		
 	}
 	
 	public void test() {
 		System.out.println("hi");
+	}
+	
+	public static void test30() {
+		System.out.println("3-30");
 	}
 
 }
