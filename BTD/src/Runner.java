@@ -13,7 +13,7 @@ public class Runner {
 	}
 	
 	public static void test30() {
-		System.out.println("3-30");
+		System.out.println("3-30"); 
 	}
 
 }
