@@ -46,6 +46,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		g.drawRect(785, 275, 80, 80);
 		g.drawRect(875, 275, 80, 80);
 		g.drawRect(785, 365, 80, 80);
+		
 	}
 	
 	public static void main(String[] arg) {
