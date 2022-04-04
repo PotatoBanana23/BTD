@@ -18,9 +18,9 @@ import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 	Map b = new Map(0, 0);
-	DartMonkey d = new DartMonkey(50, 50); 
-	Shooting s = new Shooting(100, 100); 
-	
+	DartMonkey d = new DartMonkey(50, 400); 
+	ArrayList<Shooting> temp = new ArrayList<Shooting>(); 	
+	boolean tempB = false; 
 	
 	
 	
@@ -28,15 +28,22 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		super.paintComponent(g);
 		b.paint(g);
 		d.paint(g);
-		s.paint(g);
+		//s.paint(g);
+			
 		
-	
+		if(tempB == true) {
+			for(int i = 0; i < temp.size(); i++) {
+				(temp.get(i)).paint(g); 
+			}
+		}
+		
 		
 
 	}
 	
 	public static void main(String[] arg) {
 		Frame f = new Frame();
+		
 	}
 	
 	public Frame() {
@@ -52,7 +59,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		t.start();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
-	
+		temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
+		tempB = true; 
 	}
 	
 	
@@ -79,7 +87,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-	
+		temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
 	}
 
 	@Override

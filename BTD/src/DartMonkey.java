@@ -35,12 +35,12 @@ public class DartMonkey {
 	
 	private void update() {
 		tx.setToTranslation(x, y);
-		tx.scale(2.15, 2.15);
+		tx.scale(1, 1);
 	}
 	
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
-		tx.scale(0.5, 0.5);
+		tx.scale(0.35, 0.35);
 	}
 
 	private Image getImage(String path) {
@@ -52,5 +52,13 @@ public class DartMonkey {
 			e.printStackTrace();
 		}
 		return tempImage;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y; 
 	}
 }
