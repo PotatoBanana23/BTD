@@ -1,3 +1,5 @@
+package imgs;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -5,13 +7,13 @@ import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
-public class DartMonkey {
+public class Shooting {
 	private int x, y;
 	private Image img; 	
 	private AffineTransform tx;
 
-	public DartMonkey(int x, int y) {
-		img = getImage("/imgs/dartMonkey.png"); //load the image for Tree
+	public Shooting(int x, int y) {
+		img = getImage("/imgs/dart.png"); //load the image for Tree
 		this.x = x;
 		this.y = y;
 
@@ -46,7 +48,7 @@ public class DartMonkey {
 	private Image getImage(String path) {
 		Image tempImage = null;
 		try {
-			URL imageURL = DartMonkey.class.getResource(path);
+			URL imageURL = Shooting.class.getResource(path);
 			tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
 		} catch (Exception e) {
 			e.printStackTrace();
