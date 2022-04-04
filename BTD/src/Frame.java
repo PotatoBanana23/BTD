@@ -18,6 +18,7 @@ import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 	Map b = new Map(0, 0);
+	DartMonkey d = new DartMonkey(50, 50); 
 	
 	
 	
@@ -25,6 +26,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		b.paint(g);
+		d.paint(g);
 		
 		
 	
@@ -88,14 +90,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		repaint();
+		repaint(); 
 	}
 
 	@Override
 	public void keyPressed(KeyEvent m) {
-		
-		
-		
 		
 	}
 
