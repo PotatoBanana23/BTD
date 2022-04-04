@@ -19,7 +19,7 @@ import javax.swing.Timer;
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 	Map b = new Map(0, 0);
 	DartMonkey d = new DartMonkey(50, 50); 
-	//Shooting s = new Shooting(100, 100); 
+	Shooting s = new Shooting(100, 100); 
 	
 	
 	
@@ -28,7 +28,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		super.paintComponent(g);
 		b.paint(g);
 		d.paint(g);
-		
+		s.paint(g);
 		
 	
 		
