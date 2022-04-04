@@ -124,12 +124,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
+		if(Math.abs(arg0.getX() - d.getX()) <= d.getR() && Math.abs(arg0.getY() - d.getY()) <= d.getR()) {
+			temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
+		}
+		
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
 	}
 
 }
