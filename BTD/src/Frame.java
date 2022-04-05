@@ -22,9 +22,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Money m = new Money(800, 110);
 	int lives = 100;
 	int money = 650;
-	
-	
-	
+	int round = 0;
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
