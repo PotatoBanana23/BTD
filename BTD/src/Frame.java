@@ -76,35 +76,23 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		System.out.println("x: " + m.getX());
 		System.out.println("y: " + m.getY());
 		
-		/*for detecting the money you want to buy, will edit and stuff later
-		 * 
-		 * if (e.getX() >= s.getX() + 5 && e.getX() <= s.getX() + 55 && e.getY() >= s.getY() + 25 && e.getY() <= s.getY() + 70) {
-		    store++;
+		//for detecting the monkeys you want to buy, will edit what it does later
+		
+		if (m.getX() > 785 && m.getX() < 865 && m.getY() > 185 && m.getY() < 265) {
+			System.out.println("dart monkey");
 		}
-		if (score > 100 && e.getX() >= upgrade[1].getX() && e.getX() <= upgrade[1].getX() + 75 && e.getY() >= upgrade[1].getY() && e.getY() <= upgrade[1].getY() + 75) {
-			score -= 100;
-			count2++;
-				
+		if (m.getX() > 875 && m.getX() < 955 && m.getY() > 185 && m.getY() < 265) {
+			System.out.println("tack shooter");
 		}
-		if (score > 1000 && e.getX() >= upgrade[2].getX() && e.getX() <= upgrade[2].getX() + 75 && e.getY() >= upgrade[2].getY() && e.getY() <= upgrade[2].getY() + 75) {
-			score -= 1000;
-			count3++;
+		if (m.getX() > 785 && m.getX() < 865 && m.getY() > 275 && m.getY() < 355) {
+			System.out.println("ice monkey");
 		}
-		if (score > 10000 && e.getX() >= upgrade[3].getX() && e.getX() <= upgrade[3].getX() + 75 && e.getY() >= upgrade[3].getY() && e.getY() <= upgrade[3].getY() + 75) {
-			score -= 10000;
-			count4++;
+		if (m.getX() > 875 && m.getX() < 955 && m.getY() > 275 && m.getY() < 355) {
+			System.out.println("cannon");
 		}
-		if (score > 100000 && e.getX() >= upgrade[4].getX() && e.getX() <= upgrade[4].getX() + 75 && e.getY() >= upgrade[4].getY() && e.getY() <= upgrade[4].getY() + 75) {
-			score -= 100000;
-			count5++;
+		if (m.getX() > 785 && m.getX() < 865 && m.getY() > 365 && m.getY() < 445) {
+			System.out.println("super monkey");
 		}
-		if (store % 2 == 1) {
-			for (int i = 0; i < space.length; i++) {
-				if (e.getX() >= space[i].getX() && e.getX() <= space[i].getX() + 150 && e.getY() >= space[i].getY() && e.getY() <= space[i].getY() + 150) {
-			        System.out.print("test");
-			    }
-			}
-		}*/
 	}
 
 	@Override
