@@ -18,8 +18,8 @@ import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 	Map b = new Map(0, 0);
-	Lives l = new Lives(800, 70);
-	Money m = new Money(800, 110);
+	Lives l = new Lives(800, 45);
+	Money m = new Money(800, 85);
 	int lives = 100;
 	int money = 650;
 	int round = 0;
@@ -27,17 +27,20 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		b.paint(g);
-		Color brown = new Color(153, 102, 0);
+		Color lightBrown = new Color(153, 102, 0);
+		Color brown = new Color(102, 51, 0);
+		g.setColor(lightBrown);
+		g.fillRect(745, 0, 250, 800);
 		g.setColor(brown);
-		g.fillRect(775, 50, 190, 100);
-		g.fillRect(775, 175, 190, 500);
+		g.fillRect(775, 25, 190, 100);
+		g.fillRect(775, 150, 190, 600);
 		l.paint(g);
 		m.paint(g);
 		g.setColor(Color.white);
 		Font fontScore2 = new Font("Helvetica", Font.BOLD, 21);
 		g.setFont(fontScore2);
-		g.drawString(":   " + lives, 825, 87);
-		g.drawString(":   " + money, 825, 130);
+		g.drawString(":   " + lives, 825, 62);
+		g.drawString(":   " + money, 825, 105);
 		g.setColor(Color.black);
 		g.drawRect(785, 185, 80, 80);
 		g.drawRect(875, 185, 80, 80);
