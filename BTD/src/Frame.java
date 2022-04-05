@@ -29,7 +29,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		super.paintComponent(g);
 		b.paint(g);
 		d.paint(g);
-		//s.paint(g);
 			
 		
 		if(tempB == true) {
@@ -70,13 +69,50 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		// TODO Auto-generated method stub
 		System.out.println("x: " + m.getX());
 		System.out.println("y: " + m.getY());
-
+		
+		
+		double dX = m.getX() - d.getX();
+		double dY = m.getY() - d.getY();
+		
+		System.out.println("dX: " + dX); 
+		System.out.println("dY: "+ dY); 
+		
+		System.out.println("dX squared: " + dX*dX); 
+		System.out.println("dY squared: "+ dY*dY); 
+		System.out.println("sqrt: "+ Math.sqrt(dX*dX + dY*dY)); 
+			
+		double length = (int) (Math.sqrt(dX*dX + dY*dY));
+		
+		System.out.println("length: " + length); 
+			
+		dX /= length;
+		dY /= length;
+		
+		System.out.println("dX: " + dX); 
+		System.out.println("dY: "+ dY); 
+		
+		double tempSpeedX = dX * 5;
+		double tempSpeedY = dY * 5; 
+		
+		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY)); 
+	
+	
+		
+	/*	double angle = Math.atan2(m.getY() - d.getY(), m.getX() - d.getX());
+		
+		double speed = 5;
+		double dX = speed * Math.cos(angle);
+		double dY = speed * Math.sin(angle);
+		
+		temp.add(new Shooting(d.getX(), d.getY(), dX, -1*dY)); 
+	*/
+		
 	}
 	
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+	
 	}
 
 	@Override
@@ -88,7 +124,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
+		
 	}
 
 	@Override
@@ -124,16 +160,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
-		if(Math.abs(arg0.getX() - d.getX()) <= d.getR() && Math.abs(arg0.getY() - d.getY()) <= d.getR()) {
-			temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
-		}
+		//temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
 		
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
+		//temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
 	}
 
 }

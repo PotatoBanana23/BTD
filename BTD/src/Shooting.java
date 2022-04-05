@@ -9,11 +9,11 @@ import java.net.URL;
 
 public class Shooting {
 	private int x, y;
-	private int vX, vY; 
+	private double vX, vY; 
 	private Image img; 	
 	private AffineTransform tx;
 
-	public Shooting(int x, int y, int vX, int vY) {
+	public Shooting(int x, int y, double vX, double vY) {
 		img = getImage("/imgs/dart.png"); //load the image for Tree
 		this.x = x;
 		this.y = y;
@@ -34,7 +34,8 @@ public class Shooting {
 		//these are the 2 lines of code needed draw an image on the screen
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(img, tx, null);
-		y -= vY; 
+		x += vX; 
+		y += vY; 
 		update();
 
 	}
