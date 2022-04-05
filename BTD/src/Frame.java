@@ -18,15 +18,32 @@ import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 	Map b = new Map(0, 0);
+
+	Bloon bloon = new Bloon(1);
+	Bloon bloon3 = new Bloon(9.5);
+	Bloon bloon4 = new Bloon(9); 
+	Bloon bloon5 = new Bloon(10);
+	
+	
+	
+	
+
 	Lives l = new Lives(800, 70);
 	Money m = new Money(800, 110);
 	int lives = 100;
 	int money = 650;
 	int round = 0;
+
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		b.paint(g);
+
+		bloon.paint(g);
+		bloon3.paint(g);
+		bloon4.paint(g);
+		bloon5.paint(g);
+
 		Color brown = new Color(153, 102, 0);
 		g.setColor(brown);
 		g.fillRect(775, 50, 190, 100);
@@ -44,6 +61,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		g.drawRect(785, 275, 80, 80);
 		g.drawRect(875, 275, 80, 80);
 		g.drawRect(785, 365, 80, 80);
+
 		
 	}
 	
