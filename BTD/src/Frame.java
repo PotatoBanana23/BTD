@@ -18,21 +18,11 @@ import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 	Map b = new Map(0, 0);
-	Bloon bloon = new Bloon(0, 350, 3);
-	Bloon bloon2 = new Bloon(140, 350, 0);
-	Bloon bloon3 = new Bloon(140, 170, 0);
-	Bloon bloon4 = new Bloon(330, 170, 0);
-	Bloon bloon5 = new Bloon(330, 550, 0);
-	Bloon bloon6 = new Bloon(90, 550, 0);
-	Bloon bloon7 = new Bloon(90, 690, 0);
-	Bloon bloon8 = new Bloon(670, 690, 0);
-	Bloon bloon9 = new Bloon(670, 480, 0);
-	Bloon bloon10 = new Bloon(490, 480, 0);
-	Bloon bloon11 = new Bloon(490, 290, 0);
-	Bloon bloon12 = new Bloon(680, 290, 0);
-	Bloon bloon13 = new Bloon(680, 90, 0);
-	Bloon bloon14 = new Bloon(410, 90, 0);
-	Bloon bloon15 = new Bloon(410, -20, 0);
+	Bloon bloon = new Bloon(1);
+	Bloon bloon3 = new Bloon(9.5);
+	Bloon bloon4 = new Bloon(9); 
+	Bloon bloon5 = new Bloon(10);
+	
 	
 	
 	
@@ -41,17 +31,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		super.paintComponent(g);
 		b.paint(g);
 		bloon.paint(g);
-		//bloon.move();
-//		bloon2.paint(g);
-//		bloon3.paint(g);
-//		bloon4.paint(g);
-//		bloon5.paint(g);
-		bloon6.paint(g);
-		bloon7.paint(g);
-		bloon8.paint(g);
-		bloon9.paint(g);
-		bloon10.paint(g);
-		bloon15.paint(g);
+		bloon3.paint(g);
+		bloon4.paint(g);
+		bloon5.paint(g);
 		
 		
 	
