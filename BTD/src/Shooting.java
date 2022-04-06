@@ -47,7 +47,7 @@ public class Shooting {
 	
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
-		tx.scale(0.5, 0.5);
+		tx.scale(0.05, 0.05);
 	}
 
 	private Image getImage(String path) {

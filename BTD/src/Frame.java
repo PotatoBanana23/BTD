@@ -21,7 +21,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Map b = new Map(0, 0);
 	Lives l = new Lives(800, 45);
 	Money m = new Money(800, 85);
-	DartMonkey d = new DartMonkey(50, 400); 
+	DartMonkey d = new DartMonkey(50, 400);
+	DartMonkey d2 = new DartMonkey(100, 100); 
 	ArrayList<Shooting> temp = new ArrayList<Shooting>(); 	
 	boolean tempB = false; 
 	Bloon bloon = new Bloon(1);
@@ -43,6 +44,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		b.paint(g);
 
 		d.paint(g);
+		d2.paint(g); 
 			
 		
 		if(tempB == true) {
