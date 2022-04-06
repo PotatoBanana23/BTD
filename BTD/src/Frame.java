@@ -20,7 +20,11 @@ import javax.swing.Timer;
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener, MouseMotionListener {
 	Map map = new Map(0, 0);
 
-	DartMonkey dart = new DartMonkey(50, 400); 
+
+
+
+	DartMonkey d = new DartMonkey(50, 400);
+	DartMonkey d2 = new DartMonkey(100, 100); 
 	ArrayList<Shooting> temp = new ArrayList<Shooting>(); 	
 	boolean tempB = false; 
 	
@@ -46,9 +50,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
+
 		map.paint(g);
-		dart.paint(g);
 		cannon.paint(g);
+
+
+		d.paint(g);
+		d2.paint(g); 
 			
 		
 		if(tempB == true) {
@@ -104,7 +112,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		t.start();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
-		temp.add(new Shooting(dart.getX(), dart.getY(), 2, 2)); 
+		temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
 		tempB = true; 
 	}
 	
@@ -117,8 +125,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 
 		
-		double dX = m.getX() - dart.getX();
-		double dY = m.getY() - dart.getY();
+		double dX = m.getX() - d.getX();
+		double dY = m.getY() - d.getY();
 		
 		System.out.println("dX: " + dX); 
 		System.out.println("dY: "+ dY); 
@@ -140,7 +148,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		double tempSpeedX = dX * 5;
 		double tempSpeedY = dY * 5; 
 		
-		temp.add(new Shooting(dart.getX(), dart.getY(), tempSpeedX, tempSpeedY)); 
+		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY)); 
 	
 	
 		
