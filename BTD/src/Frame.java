@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -16,8 +17,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
+public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener, MouseMotionListener {
 	Map b = new Map(0, 0);
+
+	DartMonkey d = new DartMonkey(50, 400); 
+	ArrayList<Shooting> temp = new ArrayList<Shooting>(); 	
+	boolean tempB = false; 
+
 
 	Bloon bloon = new Bloon(1);
 	Bloon bloon3 = new Bloon(9.5);
@@ -25,6 +31,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Bloon bloon5 = new Bloon(10);
 	
 	
+
 	
 	
 
@@ -38,6 +45,18 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		b.paint(g);
+
+		d.paint(g);
+			
+		
+		if(tempB == true) {
+			for(int i = 0; i < temp.size(); i++) {
+				(temp.get(i)).paint(g); 
+			}
+		}
+		
+		
+
 
 		bloon.paint(g);
 		bloon3.paint(g);
@@ -67,6 +86,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	public static void main(String[] arg) {
 		Frame f = new Frame();
+		
 	}
 	
 	public Frame() {
@@ -82,7 +102,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		t.start();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
-	
+		temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
+		tempB = true; 
 	}
 	
 	
@@ -92,6 +113,45 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		System.out.println("x: " + m.getX());
 		System.out.println("y: " + m.getY());
 		
+
+		
+		double dX = m.getX() - d.getX();
+		double dY = m.getY() - d.getY();
+		
+		System.out.println("dX: " + dX); 
+		System.out.println("dY: "+ dY); 
+		
+		System.out.println("dX squared: " + dX*dX); 
+		System.out.println("dY squared: "+ dY*dY); 
+		System.out.println("sqrt: "+ Math.sqrt(dX*dX + dY*dY)); 
+			
+		double length = (int) (Math.sqrt(dX*dX + dY*dY));
+		
+		System.out.println("length: " + length); 
+			
+		dX /= length;
+		dY /= length;
+		
+		System.out.println("dX: " + dX); 
+		System.out.println("dY: "+ dY); 
+		
+		double tempSpeedX = dX * 5;
+		double tempSpeedY = dY * 5; 
+		
+		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY)); 
+	
+	
+		
+	/*	double angle = Math.atan2(m.getY() - d.getY(), m.getX() - d.getX());
+		
+		double speed = 5;
+		double dX = speed * Math.cos(angle);
+		double dY = speed * Math.sin(angle);
+		
+		temp.add(new Shooting(d.getX(), d.getY(), dX, -1*dY)); 
+	*/
+		
+
 		//for detecting the monkeys you want to buy, will edit what it does later
 		
 		if (m.getX() > 785 && m.getX() < 865 && m.getY() > 185 && m.getY() < 265) {
@@ -109,12 +169,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		if (m.getX() > 785 && m.getX() < 865 && m.getY() > 365 && m.getY() < 445) {
 			System.out.println("super monkey");
 		}
-	}
 
+	}
+	
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+	
 	}
 
 	@Override
@@ -126,7 +187,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-	
+		
 	}
 
 	@Override
@@ -138,14 +199,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		repaint();
+		repaint(); 
 	}
 
 	@Override
 	public void keyPressed(KeyEvent m) {
-		
-		
-		
 		
 	}
 
@@ -159,6 +217,20 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+		//temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		//temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
 	}
 
 }
