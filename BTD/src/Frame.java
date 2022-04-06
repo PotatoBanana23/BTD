@@ -19,25 +19,16 @@ import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener, MouseMotionListener {
 	Map b = new Map(0, 0);
-
+	Lives l = new Lives(800, 45);
+	Money m = new Money(800, 85);
 	DartMonkey d = new DartMonkey(50, 400);
 	DartMonkey d2 = new DartMonkey(100, 100); 
 	ArrayList<Shooting> temp = new ArrayList<Shooting>(); 	
 	boolean tempB = false; 
-
-
 	Bloon bloon = new Bloon(1);
 	Bloon bloon3 = new Bloon(9.5);
 	Bloon bloon4 = new Bloon(9); 
 	Bloon bloon5 = new Bloon(10);
-	
-	
-
-	
-	
-
-	Lives l = new Lives(800, 70);
-	Money m = new Money(800, 110);
 	int lives = 100;
 	int money = 650;
 	int round = 0;
@@ -45,6 +36,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
+		b.paint(g);
+		Color lightBrown = new Color(153, 102, 0);
+		Color brown = new Color(102, 51, 0);
+		g.setColor(lightBrown);
+		g.fillRect(745, 0, 250, 800);
 		b.paint(g);
 
 		d.paint(g);
@@ -57,31 +53,26 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			}
 		}
 		
-		
-
-
 		bloon.paint(g);
 		bloon3.paint(g);
 		bloon4.paint(g);
 		bloon5.paint(g);
-
-		Color brown = new Color(153, 102, 0);
 		g.setColor(brown);
-		g.fillRect(775, 50, 190, 100);
-		g.fillRect(775, 175, 190, 500);
+		g.fillRect(775, 25, 190, 100);
+		g.fillRect(775, 150, 190, 600);
 		l.paint(g);
 		m.paint(g);
 		g.setColor(Color.white);
 		Font fontScore2 = new Font("Helvetica", Font.BOLD, 21);
 		g.setFont(fontScore2);
-		g.drawString(":   " + lives, 825, 87);
-		g.drawString(":   " + money, 825, 130);
+		g.drawString(":   " + lives, 825, 62);
+		g.drawString(":   " + money, 825, 105);
 		g.setColor(Color.black);
-		g.drawRect(785, 185, 80, 80);
-		g.drawRect(875, 185, 80, 80);
-		g.drawRect(785, 275, 80, 80);
-		g.drawRect(875, 275, 80, 80);
-		g.drawRect(785, 365, 80, 80);
+		g.drawRect(785, 160, 80, 80);
+		g.drawRect(875, 160, 80, 80);
+		g.drawRect(785, 250, 80, 80);
+		g.drawRect(875, 250, 80, 80);
+		g.drawRect(785, 340, 80, 80);
 
 		
 	}
@@ -117,7 +108,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 
 		
-		double dX = m.getX() - d.getX();
+		/*double dX = m.getX() - d.getX();
 		double dY = m.getY() - d.getY();
 		
 		System.out.println("dX: " + dX); 
@@ -140,7 +131,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		double tempSpeedX = dX * 5;
 		double tempSpeedY = dY * 5; 
 		
-		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY)); 
+		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY)); */
 	
 	
 		
