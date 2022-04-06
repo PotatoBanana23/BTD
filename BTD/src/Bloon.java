@@ -141,7 +141,7 @@ public class Bloon{
 	
 	private void update() {
 		tx.setToTranslation(x, y);
-		tx.scale(0.4, 0.4);
+		tx.scale(0.75, 0.75);
 	}
 	
 	private void init(double a, double b) {
