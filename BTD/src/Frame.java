@@ -106,7 +106,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 
 		
-		double dX = m.getX() - d.getX();
+		/*double dX = m.getX() - d.getX();
 		double dY = m.getY() - d.getY();
 		
 		System.out.println("dX: " + dX); 
@@ -129,7 +129,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		double tempSpeedX = dX * 5;
 		double tempSpeedY = dY * 5; 
 		
-		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY)); 
+		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY)); */
 	
 	
 		
