@@ -1,14 +1,21 @@
+
+/Bloon.class
+
 /Runner.class
 /testClass.class
 /test.class
-<<<<<<< HEAD
+
 /cannonExplosion.png
-=======
+
+
 /Frame.class
-/Background.class
 /Map.class
+/Runner.class
 /imgs/
->>>>>>> branch 'master' of https://github.com/PotatoBanana23/BTD
+
+/test.class
+
+
 /Shop.class
 /Lives.class
 /Money.class
