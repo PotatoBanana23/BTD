@@ -110,35 +110,35 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void mouseClicked(MouseEvent m) {
 		// TODO Auto-generated method stub
-		System.out.println("x: " + m.getX());
-		System.out.println("y: " + m.getY());
-		
-
-		
-		double dX = m.getX() - d.getX();
-		double dY = m.getY() - d.getY();
-		
-		System.out.println("dX: " + dX); 
-		System.out.println("dY: "+ dY); 
-		
-		System.out.println("dX squared: " + dX*dX); 
-		System.out.println("dY squared: "+ dY*dY); 
-		System.out.println("sqrt: "+ Math.sqrt(dX*dX + dY*dY)); 
-			
-		double length = (int) (Math.sqrt(dX*dX + dY*dY));
-		
-		System.out.println("length: " + length); 
-			
-		dX /= length;
-		dY /= length;
-		
-		System.out.println("dX: " + dX); 
-		System.out.println("dY: "+ dY); 
-		
-		double tempSpeedX = dX * 5;
-		double tempSpeedY = dY * 5; 
-		
-		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY)); 
+//		System.out.println("x: " + m.getX());
+//		System.out.println("y: " + m.getY());
+//		
+//
+//		
+//		double dX = m.getX() - d.getX();
+//		double dY = m.getY() - d.getY();
+//		
+//		System.out.println("dX: " + dX); 
+//		System.out.println("dY: "+ dY); 
+//		
+//		System.out.println("dX squared: " + dX*dX); 
+//		System.out.println("dY squared: "+ dY*dY); 
+//		System.out.println("sqrt: "+ Math.sqrt(dX*dX + dY*dY)); 
+//			
+//		double length = (int) (Math.sqrt(dX*dX + dY*dY));
+//		
+//		System.out.println("length: " + length); 
+//			
+//		dX /= length;
+//		dY /= length;
+//		
+//		System.out.println("dX: " + dX); 
+//		System.out.println("dY: "+ dY); 
+//		
+//		double tempSpeedX = dX * 5;
+//		double tempSpeedY = dY * 5; 
+//		
+//		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY)); 
 	
 	
 		
@@ -151,6 +151,33 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		temp.add(new Shooting(d.getX(), d.getY(), dX, -1*dY)); 
 	*/
 		
+		if (Math.abs(bloon.getX() - d.getX()) <= d.getR() && Math.abs(bloon.getY() - d.getY()) <= d.getR()) {
+
+			double dX = bloon.getX() - d.getX();
+			double dY = bloon.getY() - d.getY();
+
+			System.out.println("dX: " + dX);
+			System.out.println("dY: " + dY);
+
+			System.out.println("dX squared: " + dX * dX);
+			System.out.println("dY squared: " + dY * dY);
+			System.out.println("sqrt: " + Math.sqrt(dX * dX + dY * dY));
+
+			double length = (int) (Math.sqrt(dX * dX + dY * dY));
+
+			System.out.println("length: " + length);
+
+			dX /= length;
+			dY /= length;
+
+			System.out.println("dX: " + dX);
+			System.out.println("dY: " + dY);
+
+			double tempSpeedX = dX * 5;
+			double tempSpeedY = dY * 5;
+
+			temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY));
+		}
 
 		//for detecting the monkeys you want to buy, will edit what it does later
 		
@@ -173,9 +200,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	}
 	
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
+	public void mouseEntered(MouseEvent m) {
 		// TODO Auto-generated method stub
-	
+		System.out.println("x: " + bloon.getX());
+		System.out.println("y: " + bloon.getY());
+		
+		
 	}
 
 	@Override
