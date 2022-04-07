@@ -23,12 +23,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	DartMonkey d = new DartMonkey(50, 400); 
 	ArrayList<Shooting> temp = new ArrayList<Shooting>(); 	
 	boolean tempB = false; 
+	ArrayList<Bloon> testBloons = new ArrayList<Bloon>(); 
+	boolean bloonPaintCheck = false; 
 
-
-	Bloon bloon = new Bloon(1);
+	/*Bloon bloon = new Bloon(1);
 	Bloon bloon3 = new Bloon(9.5);
 	Bloon bloon4 = new Bloon(9); 
-	Bloon bloon5 = new Bloon(10);
+	Bloon bloon5 = new Bloon(10);*/
 	
 	
 
@@ -43,7 +44,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 	
 	public void paint(Graphics g) {
+		
+
+		
 		super.paintComponent(g);
+		
 		b.paint(g);
 
 		d.paint(g);
@@ -57,11 +62,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		
 
-
-		bloon.paint(g);
-		bloon3.paint(g);
-		bloon4.paint(g);
-		bloon5.paint(g);
+		
+			for (int i = 0; i < testBloons.size(); i++) {
+				(testBloons.get(i)).paint(g);
+			}
+			
+		
 
 		Color brown = new Color(153, 102, 0);
 		g.setColor(brown);
@@ -104,6 +110,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.setVisible(true);
 		temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
 		tempB = true; 
+		testBloons.add(new Bloon(1)); 
+		testBloons.add(new Bloon(9.5));
+		testBloons.add(new Bloon(9));
+		testBloons.add(new Bloon(10));
 	}
 	
 	
@@ -151,33 +161,55 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		temp.add(new Shooting(d.getX(), d.getY(), dX, -1*dY)); 
 	*/
 		
-		if (Math.abs(bloon.getX() - d.getX()) <= d.getR() && Math.abs(bloon.getY() - d.getY()) <= d.getR()) {
+		
+		if (Math.abs(testBloons.get(0).getX() - d.getX()) <= d.getR() && Math.abs(testBloons.get(0).getY() - d.getY()) <= d.getR()) {
+			
+			double dX = testBloons.get(0).getX() - d.getX();
+			double dY = testBloons.get(0).getY() - d.getY();
 
-			double dX = bloon.getX() - d.getX();
-			double dY = bloon.getY() - d.getY();
+			//System.out.println("dX: " + dX);
+			//System.out.println("dY: " + dY);
 
-			System.out.println("dX: " + dX);
-			System.out.println("dY: " + dY);
-
-			System.out.println("dX squared: " + dX * dX);
-			System.out.println("dY squared: " + dY * dY);
-			System.out.println("sqrt: " + Math.sqrt(dX * dX + dY * dY));
+			//System.out.println("dX squared: " + dX * dX);
+			//System.out.println("dY squared: " + dY * dY);
+			//System.out.println("sqrt: " + Math.sqrt(dX * dX + dY * dY));
 
 			double length = (int) (Math.sqrt(dX * dX + dY * dY));
 
-			System.out.println("length: " + length);
+			//System.out.println("length: " + length);
 
 			dX /= length;
 			dY /= length;
 
-			System.out.println("dX: " + dX);
-			System.out.println("dY: " + dY);
+			//System.out.println("dX: " + dX);
+			//System.out.println("dY: " + dY);
 
 			double tempSpeedX = dX * 5;
 			double tempSpeedY = dY * 5;
 
 			temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY));
+			//testBloons.get(0).changePicture("/imgs/poppedBloon.png");
+			
+			testBloons.get(0).changePicture("/imgs/poppedBloon.png");
+			
+			if(temp.size() > 0) {
+				//int size = temp.size(); 
+				//ArrayList<Bloon> iterator = testBloons; 
+				for(int i = 0; i < temp.size(); i++) {
+					if(Math.abs(temp.get(i).getX()  - testBloons.get(0).getX()) <= 100 && 
+							Math.abs(temp.get(i).getY()  - testBloons.get(0).getY()) <= 100) {
+						
+						//testBloons.get(0).changePicture("/imgs/poppedBloon.png");
+						testBloons.remove(0); 
+						
+					}
+				}
+			}
+			
 		}
+		
+		
+		
 
 		//for detecting the monkeys you want to buy, will edit what it does later
 		
@@ -202,8 +234,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void mouseEntered(MouseEvent m) {
 		// TODO Auto-generated method stub
-		System.out.println("x: " + bloon.getX());
-		System.out.println("y: " + bloon.getY());
+		System.out.println("x: " + testBloons.get(0).getX());
+		System.out.println("y: " + testBloons.get(0).getY());
 		
 		
 	}
