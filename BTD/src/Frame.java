@@ -20,7 +20,7 @@ import javax.swing.Timer;
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener, MouseMotionListener {
 	Map b = new Map(0, 0);
 	DartMonkey dShop = new DartMonkey(785, 160);
-	TackShooter tShop = new TackShooter(878, 163);
+	TackShooter tsShop = new TackShooter(878, 163);
 	IceMonkey iShop = new IceMonkey(788, 245);
 	Cannon cShop = new Cannon(875, 250);
 	SuperMonkey sShop = new SuperMonkey(785, 340);
@@ -28,7 +28,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Money m = new Money(800, 85);
 	DartMonkey d = new DartMonkey(50, 400);
 	DartMonkey d2 = new DartMonkey(100, 100);
-	ArrayList<Shooting> temp = new ArrayList<Shooting>(); 	
+	TackShooter ts = new TackShooter(120, 590);
+	ArrayList<Shooting> temp = new ArrayList<Shooting>();
+	ArrayList<TackShooting> tackTemp = new ArrayList<TackShooting>();
 	boolean tempB = false; 
 	Bloon bloon = new Bloon(1);
 	Bloon bloon3 = new Bloon(9.5);
@@ -46,18 +48,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		Color brown = new Color(102, 51, 0);
 		g.setColor(lightBrown);
 		g.fillRect(745, 0, 250, 800);
-		b.paint(g);
-
 		d.paint(g);
 		d2.paint(g); 
-			
-		
+		ts.paint(g);
 		if(tempB == true) {
 			for(int i = 0; i < temp.size(); i++) {
 				(temp.get(i)).paint(g); 
 			}
+			for(int i = 0; i < tackTemp.size(); i++) {
+				(tackTemp.get(i)).paint(g); 
+			}
 		}
-		
 		bloon.paint(g);
 		bloon3.paint(g);
 		bloon4.paint(g);
@@ -79,7 +80,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		g.drawRect(875, 250, 80, 80);
 		g.drawRect(785, 340, 80, 80);
 		dShop.paint(g);
-		tShop.paint(g);
+		tsShop.paint(g);
 		iShop.paint(g);
 		cShop.paint(g);
 		sShop.paint(g);
@@ -104,6 +105,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
 		temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
+		tackTemp.add(new TackShooting(ts.getX(), ts.getY(), 2, 2)); 
 		tempB = true; 
 	}
 	
@@ -140,6 +142,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		double tempSpeedY = dY * 5; 
 		
 		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY));
+		
+		tackTemp.add(new TackShooting(ts.getX(), ts.getY(), tempSpeedX, tempSpeedY));
 	
 	
 		
