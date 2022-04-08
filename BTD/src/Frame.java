@@ -104,8 +104,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		t.start();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
-		temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
-		tackTemp.add(new TackShooting(ts.getX(), ts.getY(), 2, 2)); 
+		temp.add(new Shooting(d.getX(), d.getY(), 2, 2));
 		tempB = true; 
 	}
 	
@@ -143,7 +142,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY));
 		
-		tackTemp.add(new TackShooting(ts.getX(), ts.getY(), tempSpeedX, tempSpeedY));
+		for (int i = 1; i <= 8; i++) {
+			tackTemp.add(new TackShooting(ts.getX() + 35, ts.getY() + 37, 3, 3, i));
+		}
 	
 	
 		
