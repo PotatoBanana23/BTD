@@ -16,26 +16,34 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener, MouseMotionListener {
-
+	
+	//objects and variables for towers
 	Map map = new Map(0, 0);
 	DartMonkey d = new DartMonkey(50, 400);
 	DartMonkey d2 = new DartMonkey(100, 100); 
 	ArrayList<Shooting> temp = new ArrayList<Shooting>(); 
 	ArrayList<CannonShooting> bombs = new ArrayList<CannonShooting>();
-	ArrayList<Bloon> bloons = new ArrayList<Bloon>();
 	boolean tempB = false; 
 	Cannon cannon = new Cannon(200, 300);
-	//test balloons
+	TackShooter ts = new TackShooter(120, 590);
+	ArrayList<TackShooting> tackTemp = new ArrayList<TackShooting>();
 	
-		{
+	
+	//test balloons
+	ArrayList<Bloon> bloons = new ArrayList<Bloon>(); {
 	for (int i = 2; i < 10; i++) {
 		int temp = i;
-		for (int j = 0; j < 1; j++) {
-			bloons.add(new Bloon(temp));
-		}
+			for (int j = 0; j < 1; j++) {
+				bloons.add(new Bloon(temp));
+			}
 		}
 	}
+	Bloon bloon = new Bloon(1);
+	Bloon bloon3 = new Bloon(9.5);
+	Bloon bloon4 = new Bloon(9); 
+	Bloon bloon5 = new Bloon(10);
 
+	//shop and lives and money
 	DartMonkey dShop = new DartMonkey(785, 160);
 	TackShooter tsShop = new TackShooter(878, 163);
 	IceMonkey iShop = new IceMonkey(788, 245);
@@ -43,14 +51,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	SuperMonkey sShop = new SuperMonkey(785, 340);
 	Lives l = new Lives(800, 45);
 	Money m = new Money(800, 85);
-	TackShooter ts = new TackShooter(120, 590);
-	ArrayList<TackShooting> tackTemp = new ArrayList<TackShooting>();
-	Bloon bloon = new Bloon(1);
-	Bloon bloon3 = new Bloon(9.5);
-	Bloon bloon4 = new Bloon(9); 
-	Bloon bloon5 = new Bloon(10);
-
-  
 	int lives = 100;
 	int money = 650;
 	int round = 0;
@@ -87,17 +87,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			bloons.get(i).paint(g);
 		}
 		
-
-		Color brown = new Color(153, 102, 0);
 			for(int i = 0; i < tackTemp.size(); i++) {
 				(tackTemp.get(i)).paint(g); 
 			}
-		}
 		bloon.paint(g);
 		bloon3.paint(g);
 		bloon4.paint(g);
 		bloon5.paint(g);
-		g.setColor(brown);
 		g.fillRect(775, 25, 190, 100);
 		g.fillRect(775, 150, 190, 600);
 		l.paint(g);

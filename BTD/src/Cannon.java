@@ -42,6 +42,7 @@ public class Cannon {
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
 		tx.scale(0.3, 0.3);
+	}
 
 
 	private Image getImage(String path) {
