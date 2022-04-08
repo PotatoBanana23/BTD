@@ -5,14 +5,14 @@ import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.net.URL;
 
-public class Cannon {
+public class TackShooter {
 	private int x, y;
 	private Image img; 	
 	private AffineTransform tx;
 	private int r = 20; 
 
-	public Cannon(int x, int y) {
-		img = getImage("/imgs/cannon.png"); //load the image for Tree
+	public TackShooter(int x, int y) {
+		img = getImage("/imgs/tackShooter.png"); //load the image for Tree
 		this.x = x;
 		this.y = y;
 
@@ -36,18 +36,18 @@ public class Cannon {
 	
 	private void update() {
 		tx.setToTranslation(x, y);
-		tx.scale(1, 1);
+		tx.scale(.75, .75);
 	}
 	
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
-		tx.scale(0.3, 0.3);
-
+		tx.scale(0.35, 0.35);
+	}
 
 	private Image getImage(String path) {
 		Image tempImage = null;
 		try {
-			URL imageURL = Cannon.class.getResource(path);
+			URL imageURL = TackShooter.class.getResource(path);
 			tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,6 +66,4 @@ public class Cannon {
 	public int getR() {
 		return r; 
 	}
-
 }
-
