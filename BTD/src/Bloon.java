@@ -141,12 +141,12 @@ public class Bloon{
 	
 	private void update() {
 		tx.setToTranslation(x, y);
-		tx.scale(0.75, 0.75);
+		tx.scale(0.7, 0.7);
 	}
 	
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
-		tx.scale(.8, .8);
+		tx.scale(0.7, 0.7);
 	}
 
 	private Image getImage(String path) {
