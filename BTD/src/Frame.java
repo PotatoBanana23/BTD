@@ -11,8 +11,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -25,16 +23,23 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 	DartMonkey d = new DartMonkey(50, 400);
 	DartMonkey d2 = new DartMonkey(100, 100); 
-	ArrayList<Shooting> temp = new ArrayList<Shooting>(); 	
+	ArrayList<Shooting> temp = new ArrayList<Shooting>(); 
+	ArrayList<CannonShooting> bombs = new ArrayList<CannonShooting>();
+	ArrayList<Bloon> bloons = new ArrayList<Bloon>();
 	boolean tempB = false; 
 	
 	Cannon cannon = new Cannon(200, 300);
 
 	//test balloons
-	Bloon bloon = new Bloon(1);
-	Bloon bloon3 = new Bloon(9.5);
-	Bloon bloon4 = new Bloon(9); 
-	Bloon bloon5 = new Bloon(10);
+	
+		{
+	for (int i = 2; i < 10; i++) {
+		int temp = i;
+		for (int j = 0; j < 1; j++) {
+			bloons.add(new Bloon(temp));
+		}
+		}
+	}
 	
 	
 
@@ -63,15 +68,26 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			for(int i = 0; i < temp.size(); i++) {
 				(temp.get(i)).paint(g); 
 			}
+			
+			for (int i = 0; i < bombs.size(); i++) {
+				bombs.get(i).paint(g);
+				if (bombs.get(i).getXSize() > 0.508) {
+					bombs.remove(i);
+				}
+			}
+			
+		}
+		
+		for (int i = 0; i < bloons.size(); i++) {
+			bloons.get(i).paint(g);
 		}
 		
 		
+		
+		
 
 
-		bloon.paint(g);
-		bloon3.paint(g);
-		bloon4.paint(g);
-		bloon5.paint(g);
+		
 
 		Color brown = new Color(153, 102, 0);
 		g.setColor(brown);
@@ -108,7 +124,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.setLayout(new GridLayout(1,2));
 		f.addMouseListener(this);
 		f.addKeyListener(this);
-		Timer t = new Timer(7, this);
+		Timer t = new Timer(10, this);
 		t.start();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
@@ -149,6 +165,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		double tempSpeedY = dY * 5; 
 		
 		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY)); 
+		bombs.add(new CannonShooting(cannon.getX(), cannon.getY(), tempSpeedX, tempSpeedY, "/imgs/cannonball.png")); 
 	
 	
 		
@@ -215,7 +232,28 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void keyPressed(KeyEvent m) {
 		
+		if (m.getKeyCode() == 32 && bombs.size() > 0) {
+			int index = bombs.size()-1;
+			int x = bombs.get(index).getX();
+			int y = bombs.get(index).getY();
+			bombs.remove(index);
+			CannonShooting temp = new CannonShooting(x-50, y-50, 0, 0, "/imgs/cannonExplosion.png");
+			bombs.add(index,temp);
+			bombs.get(index).setExploded();
+			
+			
+			
+		}
 	}
+	
+	public static void wait(int ms) {
+		long current = System.currentTimeMillis();
+		while (System.currentTimeMillis() - current < ms) {
+			
+		} 
+	}
+	
+	
 
 	@Override
 	public void keyReleased(KeyEvent m) {
