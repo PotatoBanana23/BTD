@@ -21,12 +21,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Map map = new Map(0, 0);
 	DartMonkey d = new DartMonkey(50, 400);
 	DartMonkey d2 = new DartMonkey(100, 100); 
-	ArrayList<Shooting> temp = new ArrayList<Shooting>(); 
-	ArrayList<CannonShooting> bombs = new ArrayList<CannonShooting>();
-	boolean tempB = false; 
-	Cannon cannon = new Cannon(200, 300);
-	TackShooter ts = new TackShooter(120, 590);
+	ArrayList<Shooting> temp = new ArrayList<Shooting>();
 	ArrayList<TackShooting> tackTemp = new ArrayList<TackShooting>();
+	ArrayList<CannonShooting> bombs = new ArrayList<CannonShooting>();
+	boolean tempB = false;
+	TackShooter ts = new TackShooter(120, 590);
+	Cannon cannon = new Cannon(200, 300);
+	Music sweep = new Music("btdTheme.wav", true);
 	
 	
 	//test balloons
@@ -60,14 +61,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		super.paintComponent(g);
 		map.paint(g);
 		cannon.paint(g);
-		Color lightBrown = new Color(153, 102, 0);
-		Color brown = new Color(102, 51, 0);
-		g.setColor(lightBrown);
-		g.fillRect(745, 0, 250, 800);
 		d.paint(g);
 		d2.paint(g); 
 		ts.paint(g);
-
+		bloon.paint(g);
+		bloon3.paint(g);
+		bloon4.paint(g);
+		bloon5.paint(g);
+		for (int i = 0; i < bloons.size(); i++) {
+			bloons.get(i).paint(g);
+		}
 		if(tempB == true) {
 			for(int i = 0; i < temp.size(); i++) {
 				(temp.get(i)).paint(g); 
@@ -80,20 +83,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 					bombs.remove(i);
 				}
 			}
-			
 		}
-		
-		for (int i = 0; i < bloons.size(); i++) {
-			bloons.get(i).paint(g);
+		for(int i = 0; i < tackTemp.size(); i++) {
+			(tackTemp.get(i)).paint(g); 
 		}
-		
-			for(int i = 0; i < tackTemp.size(); i++) {
-				(tackTemp.get(i)).paint(g); 
-			}
-		bloon.paint(g);
-		bloon3.paint(g);
-		bloon4.paint(g);
-		bloon5.paint(g);
+		Color lightBrown = new Color(153, 102, 0);
+		Color brown = new Color(102, 51, 0);
+		g.setColor(lightBrown);
+		g.fillRect(745, 0, 250, 800);
+		g.setColor(brown);
 		g.fillRect(775, 25, 190, 100);
 		g.fillRect(775, 150, 190, 600);
 		l.paint(g);
@@ -133,6 +131,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		Timer t = new Timer(10, this);
 		t.start();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		sweep.play();
 		f.setVisible(true);
 		temp.add(new Shooting(d.getX(), d.getY(), 2, 2));
 		tempB = true; 
@@ -171,7 +170,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		double tempSpeedY = dY * 5; 
 		
 		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY));
-		
 		for (int i = 1; i <= 8; i++) {
 			tackTemp.add(new TackShooting(ts.getX() + 35, ts.getY() + 37, 3, 3, i));
 		}
