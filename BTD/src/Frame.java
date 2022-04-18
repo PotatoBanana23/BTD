@@ -11,15 +11,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener, MouseMotionListener {
 	Map b = new Map(0, 0);
-
 	DartMonkey d = new DartMonkey(50, 400); 
 	ArrayList<Shooting> temp = new ArrayList<Shooting>(); 	
 	boolean tempB = false; 
@@ -28,6 +25,43 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 	Lives l = new Lives(800, 70);
 	Money m = new Money(800, 110);
+
+	
+	//objects and variables for towers
+	Map map = new Map(0, 0);
+	DartMonkey d = new DartMonkey(50, 400);
+	DartMonkey d2 = new DartMonkey(100, 100); 
+	ArrayList<Shooting> temp = new ArrayList<Shooting>();
+	ArrayList<TackShooting> tackTemp = new ArrayList<TackShooting>();
+	ArrayList<CannonShooting> bombs = new ArrayList<CannonShooting>();
+	boolean tempB = false;
+	TackShooter ts = new TackShooter(120, 590);
+	Cannon cannon = new Cannon(200, 300);
+	Music sweep = new Music("btdTheme.wav", true);
+	
+	
+	//test balloons
+	ArrayList<Bloon> bloons = new ArrayList<Bloon>(); {
+	for (int i = 2; i < 10; i++) {
+		int temp = i;
+			for (int j = 0; j < 1; j++) {
+				bloons.add(new Bloon(temp));
+			}
+		}
+	}
+	Bloon bloon = new Bloon(1);
+	Bloon bloon3 = new Bloon(9.5);
+	Bloon bloon4 = new Bloon(9); 
+	Bloon bloon5 = new Bloon(10);
+
+	//shop and lives and money
+	DartMonkey dShop = new DartMonkey(785, 160);
+	TackShooter tsShop = new TackShooter(878, 163);
+	IceMonkey iShop = new IceMonkey(788, 245);
+	Cannon cShop = new Cannon(875, 250);
+	SuperMonkey sShop = new SuperMonkey(785, 340);
+	Lives l = new Lives(800, 45);
+	Money m = new Money(800, 85);
 	int lives = 100;
 	int money = 650;
 	int round = 0;
@@ -44,10 +78,25 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		d.paint(g);
 			
 		
+
+		map.paint(g);
+		cannon.paint(g);
+		d.paint(g);
+		d2.paint(g); 
+		ts.paint(g);
+		bloon.paint(g);
+		bloon3.paint(g);
+		bloon4.paint(g);
+		bloon5.paint(g);
+		for (int i = 0; i < bloons.size(); i++) {
+			bloons.get(i).paint(g);
+		}
+
 		if(tempB == true) {
 			for(int i = 0; i < temp.size(); i++) {
 				(temp.get(i)).paint(g); 
 			}
+
 		}
 		
 		
@@ -59,25 +108,43 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			
 		
 
-		Color brown = new Color(153, 102, 0);
+
+			
+			for (int i = 0; i < bombs.size(); i++) {
+				bombs.get(i).paint(g);
+				if (bombs.get(i).getXSize() > 0.508) {
+					bombs.remove(i);
+				}
+			}
+		}
+		for(int i = 0; i < tackTemp.size(); i++) {
+			(tackTemp.get(i)).paint(g); 
+		}
+		Color lightBrown = new Color(153, 102, 0);
+		Color brown = new Color(102, 51, 0);
+		g.setColor(lightBrown);
+		g.fillRect(745, 0, 250, 800);
 		g.setColor(brown);
-		g.fillRect(775, 50, 190, 100);
-		g.fillRect(775, 175, 190, 500);
+		g.fillRect(775, 25, 190, 100);
+		g.fillRect(775, 150, 190, 600);
 		l.paint(g);
 		m.paint(g);
 		g.setColor(Color.white);
 		Font fontScore2 = new Font("Helvetica", Font.BOLD, 21);
 		g.setFont(fontScore2);
-		g.drawString(":   " + lives, 825, 87);
-		g.drawString(":   " + money, 825, 130);
+		g.drawString(":   " + lives, 825, 62);
+		g.drawString(":   " + money, 825, 105);
 		g.setColor(Color.black);
-		g.drawRect(785, 185, 80, 80);
-		g.drawRect(875, 185, 80, 80);
-		g.drawRect(785, 275, 80, 80);
-		g.drawRect(875, 275, 80, 80);
-		g.drawRect(785, 365, 80, 80);
-
-		
+		g.drawRect(785, 160, 80, 80);
+		g.drawRect(875, 160, 80, 80);
+		g.drawRect(785, 250, 80, 80);
+		g.drawRect(875, 250, 80, 80);
+		g.drawRect(785, 340, 80, 80);
+		dShop.paint(g);
+		tsShop.paint(g);
+		iShop.paint(g);
+		cShop.paint(g);
+		sShop.paint(g);
 	}
 	
 	public static void main(String[] arg) {
@@ -94,11 +161,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.setLayout(new GridLayout(1,2));
 		f.addMouseListener(this);
 		f.addKeyListener(this);
-		Timer t = new Timer(7, this);
+		Timer t = new Timer(10, this);
 		t.start();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		sweep.play();
 		f.setVisible(true);
-		temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
+		temp.add(new Shooting(d.getX(), d.getY(), 2, 2));
 		tempB = true; 
 		testBloons.add(new Bloon(1)); 
 		testBloons.add(new Bloon(2));
@@ -118,6 +186,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			double dX = testBloons.get(0).getX() - d.getX();
 			double dY = testBloons.get(0).getY() - d.getY();
 			
+
 			//finding length w/ Pythagorean Theorem 
 			double length = (int) (Math.sqrt(dX * dX + dY * dY));
 			
@@ -154,6 +223,34 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		}
 
 		// for detecting the monkeys you want to buy, will edit what it does later
+
+		dX /= length;
+		dY /= length;
+		
+		System.out.println("dX: " + dX); 
+		System.out.println("dY: "+ dY); 
+		
+		double tempSpeedX = dX * 5;
+		double tempSpeedY = dY * 5; 
+		
+		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY));
+		for (int i = 1; i <= 8; i++) {
+			tackTemp.add(new TackShooting(ts.getX() + 35, ts.getY() + 37, 3, 3, i));
+		}
+		bombs.add(new CannonShooting(cannon.getX(), cannon.getY(), tempSpeedX, tempSpeedY, "/imgs/cannonball.png")); 
+
+	
+	
+		
+	/*	double angle = Math.atan2(m.getY() - d.getY(), m.getX() - d.getX());
+		
+		double speed = 5;
+		double dX = speed * Math.cos(angle);
+		double dY = speed * Math.sin(angle);
+		
+		temp.add(new Shooting(d.getX(), d.getY(), dX, -1*dY)); 
+	*/
+
 
 		if (m.getX() > 785 && m.getX() < 865 && m.getY() > 185 && m.getY() < 265) {
 			System.out.println("dart monkey");
@@ -218,7 +315,28 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void keyPressed(KeyEvent m) {
 		
+		if (m.getKeyCode() == 32 && bombs.size() > 0) {
+			int index = bombs.size()-1;
+			int x = bombs.get(index).getX();
+			int y = bombs.get(index).getY();
+			bombs.remove(index);
+			CannonShooting temp = new CannonShooting(x-50, y-50, 0, 0, "/imgs/cannonExplosion.png");
+			bombs.add(index,temp);
+			bombs.get(index).setExploded();
+			
+			
+			
+		}
 	}
+	
+	public static void wait(int ms) {
+		long current = System.currentTimeMillis();
+		while (System.currentTimeMillis() - current < ms) {
+			
+		} 
+	}
+	
+	
 
 	@Override
 	public void keyReleased(KeyEvent m) {
