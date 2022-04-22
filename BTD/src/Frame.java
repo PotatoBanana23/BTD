@@ -69,7 +69,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		super.paintComponent(g);
 		
-		//b.paint(g);
 
 		d.paint(g);
 			
@@ -230,12 +229,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 		}
 		
-			
+			 
 		// for detecting the monkeys you want to buy, will edit what it does later
 
 		 
+		if(tempSpeedX != 0 && tempSpeedY != 0) {
+			temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY));
+		}
 		
-		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY));
 		for (int i = 1; i <= 8; i++) {
 			tackTemp.add(new TackShooting(ts.getX() + 35, ts.getY() + 37, 3, 3, i));
 		}
