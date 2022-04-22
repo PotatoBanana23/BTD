@@ -1,2 +1,28 @@
 /imgs/
+<<<<<<< HEAD
 /Sound.class
+=======
+/Bloon.class
+/Cannon.class
+/DartMonkey.class
+/Frame.class
+/IceMonkey.class
+/Lives.class
+/Map.class
+/Money.class
+/Runner.class
+/Shooting.class
+/SuperMonkey.class
+/TackShooter.class
+/test.class
+/Shop.class
+/Lives.class
+/Money.class
+/Cannon.class
+/CannonShooting.class
+
+
+/Music.class
+/Tack.class
+/TackShooting.class
+>>>>>>> branch 'master' of https://github.com/PotatoBanana23/BTD

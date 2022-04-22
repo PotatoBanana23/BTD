@@ -12,8 +12,10 @@ public class Bloon{
 	private Image img; 	
 	private AffineTransform tx;
 	private double speed;
+	private String fileName; 
 
 	public Bloon(double speed) {
+		fileName = "/imgs/redBloon.png";
 		img = getImage("/imgs/redBloon.png"); //load the image for Tree
 		x = 0;
 		y = 350;
@@ -25,6 +27,7 @@ public class Bloon{
 	}
 	
 	public void changePicture(String newFileName) {
+		fileName = newFileName; 
 		img = getImage(newFileName);
 		init(x, y);
 	}
@@ -137,6 +140,10 @@ public class Bloon{
 	//setters for speed
 	public void setSpeed(int speed) {
 		this.speed = speed;
+	}
+	
+	public String getImageName() {
+		return fileName; 
 	}
 	
 	private void update() {
