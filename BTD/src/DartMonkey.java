@@ -9,7 +9,7 @@ public class DartMonkey {
 	private int x, y;
 	private Image img; 	
 	private AffineTransform tx;
-	private int r = 20; 
+	private int r = 75; 
 
 	public DartMonkey(int x, int y) {
 		img = getImage("/imgs/dartMonkey.png"); //load the image for Tree
