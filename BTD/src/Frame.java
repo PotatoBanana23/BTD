@@ -27,6 +27,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	boolean tempB = false;
 	TackShooter ts = new TackShooter(120, 590);
 	Cannon cannon = new Cannon(200, 300);
+	Music musicOn = new Music(915, 700);
+	Sound soundOn = new Sound(865, 700);
+	Music musicOff = new Music();
+	Sound soundOff = new Sound();
+	int musicCount = 0;
+	int soundCount = 0;
+	// DartMonkey, TackShooter, IceMonkey, Cannon, SuperMonkey
+	Range dr = new Range(true, false, false, false, false, d.getX(), d.getY());
+	Range tsr = new Range(false, true, false, false, false, ts.getX(), ts.getY());
+	Range cannonr = new Range(false, false, false, true, false, cannon.getX(), cannon.getY());
 	Music sweep = new Music("btdTheme.wav", true);
 	
 	
@@ -75,7 +85,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			for(int i = 0; i < temp.size(); i++) {
 				(temp.get(i)).paint(g); 
 			}
-
 			
 			for (int i = 0; i < bombs.size(); i++) {
 				bombs.get(i).paint(g);
@@ -112,6 +121,19 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		iShop.paint(g);
 		cShop.paint(g);
 		sShop.paint(g);
+		if (musicCount % 2 == 0) {
+			musicOn.paint(g);
+		} else {
+			musicOff.paint(g);
+		}
+		if (soundCount % 2 == 0) {
+			soundOn.paint(g);
+		} else {
+			soundOff.paint(g);
+		}
+		dr.paint(g);
+		tsr.paint(g);
+		cannonr.paint(g);
 	}
 	
 	public static void main(String[] arg) {
@@ -131,8 +153,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		Timer t = new Timer(10, this);
 		t.start();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		sweep.play();
 		f.setVisible(true);
+		sweep.play();
 		temp.add(new Shooting(d.getX(), d.getY(), 2, 2));
 		tempB = true; 
 	}
@@ -205,7 +227,24 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		if (m.getX() > 785 && m.getX() < 865 && m.getY() > 365 && m.getY() < 445) {
 			System.out.println("super monkey");
 		}
-
+		
+		if (m.getX() >= 915 && m.getX() <= 965 && m.getY() >= 700 + 25 && m.getY() <= 750 + 25) {
+			musicCount++;
+			if (musicCount % 2 == 0) {
+				sweep.play();
+			} else {
+				sweep.stop();
+			}
+		}
+		if (m.getX() >= 865 && m.getX() <= 915 && m.getY() >= 700 + 25 && m.getY() <= 750 + 25) {
+			soundCount++;
+			if (soundCount % 2 == 0) {
+				// sound . play here
+			} else {
+				// sound . stop here
+			}
+		}
+		
 	}
 	
 	@Override
