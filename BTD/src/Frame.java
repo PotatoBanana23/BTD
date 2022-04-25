@@ -218,14 +218,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				}
 			}
 			
-			dX /= length;
-			dY /= length;
+		
 			
 			System.out.println("dX: " + dX); 
 			System.out.println("dY: "+ dY); 
 			
-			tempSpeedX = dX * 5;
-			tempSpeedY = dY * 5;
+		
 
 		}
 		
