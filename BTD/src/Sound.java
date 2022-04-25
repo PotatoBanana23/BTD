@@ -4,7 +4,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 
 import javax.sound.sampled.AudioFormat;
@@ -12,11 +11,9 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineEvent;
-import javax.sound.sampled.LineListener;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class Music  implements Runnable  {
+public class Sound implements Runnable  {
 	
 	private Thread t;
 	private File audioFile ;
@@ -29,8 +26,8 @@ public class Music  implements Runnable  {
 	private Image img; 	
 	private AffineTransform tx;
 
-	public Music(int x, int y) {
-		img = getImage("/imgs/musicOn.png"); //load the image for Tree
+	public Sound(int x, int y) {
+		img = getImage("/imgs/soundOn.png"); //load the image for Tree
 		this.x = x;
 		this.y = y;
 		tx = AffineTransform.getTranslateInstance(x, y);
@@ -38,10 +35,10 @@ public class Music  implements Runnable  {
 									//use your variables
 	}
 	
-	public Music() {
-		int x = 915;
+	public Sound() {
+		int x = 865;
 		int y = 700;
-		img = getImage("/imgs/musicOff.png"); //load the image for Tree
+		img = getImage("/imgs/soundOff.png"); //load the image for Tree
 		this.x = x;
 		this.y = y;
 		tx = AffineTransform.getTranslateInstance(x, y);
@@ -75,7 +72,7 @@ public class Music  implements Runnable  {
 	private Image getImage(String path) {
 		Image tempImage = null;
 		try {
-			URL imageURL = Music.class.getResource(path);
+			URL imageURL = Sound.class.getResource(path);
 			tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,7 +87,7 @@ public class Music  implements Runnable  {
 	 * @param fileName name of file such as "backgroundmusic.wav"
 	 * @param loops Set to true if you want the sound to loop continuously
 	 */
-	public Music(String fileName, boolean loops) {
+	public Sound(String fileName, boolean loops) {
 		fn = fileName;
 		audioFile = new File(fileName);
 		this.loops = loops;
