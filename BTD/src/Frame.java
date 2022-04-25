@@ -55,7 +55,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	TackShooter tsShop = new TackShooter(878, 163);
 	IceMonkey iShop = new IceMonkey(788, 245);
 	Cannon cShop = new Cannon(875, 250);
-	SuperMonkey sShop = new SuperMonkey(785, 340);
+	//SuperMonkey sShop = new SuperMonkey(785, 340);
 	Lives l = new Lives(800, 45);
 	Money m = new Money(800, 85);
 	int lives = 100;
@@ -139,7 +139,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		tsShop.paint(g);
 		iShop.paint(g);
 		cShop.paint(g);
-		sShop.paint(g);
+		//sShop.paint(g);
 	}
 	
 	public static void main(String[] arg) {
