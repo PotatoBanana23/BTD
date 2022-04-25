@@ -26,11 +26,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	//objects and variables for towers
 	Map map = new Map(0, 0);
 	DartMonkey d = new DartMonkey(50, 400);
+	superMonkey s = new superMonkey(500, 510); 
 	//DartMonkey d2 = new DartMonkey(100, 100); 
 	ArrayList<Shooting> temp = new ArrayList<Shooting>();
+	ArrayList<Shooting> sMonkeyBullets = new ArrayList<Shooting>();
 	ArrayList<TackShooting> tackTemp = new ArrayList<TackShooting>();
 	ArrayList<CannonShooting> bombs = new ArrayList<CannonShooting>();
 	boolean tempB = false;
+	boolean sMonkeyBulletsB = false; 
 	TackShooter ts = new TackShooter(120, 590);
 	Cannon cannon = new Cannon(200, 300);
 	Music sweep = new Music("btdTheme.wav", true);
@@ -55,7 +58,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	TackShooter tsShop = new TackShooter(878, 163);
 	IceMonkey iShop = new IceMonkey(788, 245);
 	Cannon cShop = new Cannon(875, 250);
-	//SuperMonkey sShop = new SuperMonkey(785, 340);
+	superMonkey sShop = new superMonkey(785, 340);
 	Lives l = new Lives(800, 45);
 	Money m = new Money(800, 85);
 	int lives = 100;
@@ -65,19 +68,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	public void paint(Graphics g) {
 		
-
-		
 		super.paintComponent(g);
 		
-
-		d.paint(g);
-			
-		
-
 		map.paint(g);
 		cannon.paint(g);
 		d.paint(g);
 		//d2.paint(g); 
+		s.paint(g);
 		ts.paint(g);
 		bloon.paint(g);
 		bloon3.paint(g);
@@ -88,6 +85,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		}
 
 		if(tempB == true) {
+			for(int i = 0; i < temp.size(); i++) {
+				(temp.get(i)).paint(g); 
+			}
+
+		}
+		
+		if(sMonkeyBulletsB == true) {
 			for(int i = 0; i < temp.size(); i++) {
 				(temp.get(i)).paint(g); 
 			}
@@ -139,7 +143,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		tsShop.paint(g);
 		iShop.paint(g);
 		cShop.paint(g);
-		//sShop.paint(g);
+		sShop.paint(g);
 	}
 	
 	public static void main(String[] arg) {
@@ -162,6 +166,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		sweep.play();
 		f.setVisible(true);
 		temp.add(new Shooting(d.getX(), d.getY(), 2, 2));
+		sMonkeyBullets.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
 		tempB = true; 
 		testBloons.add(new Bloon(1)); 
 		testBloons.add(new Bloon(2));
@@ -209,11 +214,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 							// delay(25);
 							// long time1 = System.currentTimeMillis();
 						}
-						/*
-						 * int c = 0; while(c < 2147483647) { c++; }
-						 * System.out.println("Time loop took: " + (System.currentTimeMillis() -
-						 * time1));
-						 */
+						
 					}
 				}
 			}
@@ -225,6 +226,45 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			
 		
 
+		}
+		
+		double sMonkeyBulletSpeedX = 0;
+		double sMonkeyBulletSpeedY = 0;
+
+		if (Math.abs(testBloons.get(0).getX() - s.getX()) <= s.getR()
+				&& Math.abs(testBloons.get(0).getY() - s.getY()) <= s.getR()) {
+
+			// getting distance
+			double dX = testBloons.get(0).getX() - s.getX();
+			double dY = testBloons.get(0).getY() - s.getY();
+
+			// finding length w/ Pythagorean Theorem
+			double length = (int) (Math.sqrt(dX * dX + dY * dY));
+
+			// scaling distance for speed calculation
+			dX /= length;
+			dY /= length;
+			sMonkeyBulletSpeedX = dX * 5;
+			sMonkeyBulletSpeedY = dY * 5;
+
+			// adding bullet shooting towards bloon to list
+			sMonkeyBullets.add(new Shooting(d.getX(), d.getY(), sMonkeyBulletSpeedX, sMonkeyBulletSpeedY));
+
+			// scanning for dart hitting bloon
+			if (sMonkeyBullets.size() > 0) {
+				for (int i = 0; i < sMonkeyBullets.size(); i++) {
+					for (int j = 0; j < testBloons.size(); j++) {
+						if (Math.abs(temp.get(i).getX() - testBloons.get(j).getX()) <= s.getR()
+								&& Math.abs(temp.get(i).getY() - testBloons.get(j).getY()) <= s.getR()
+								&& !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
+							testBloons.get(j).changePicture("/imgs/poppedBloon.png");
+							break;
+							// delay(25);
+							// long time1 = System.currentTimeMillis();
+						}
+					}
+				}
+			}
 		}
 		
 			 
