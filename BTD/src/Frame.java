@@ -26,13 +26,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	//objects and variables for towers
 	Map map = new Map(0, 0);
 	DartMonkey d = new DartMonkey(50, 400);
-	//DartMonkey d2 = new DartMonkey(100, 100); 
+	//DartMonkey d2 = new DartMonkey(100, 100);
+	TackShooter ts = new TackShooter(120, 590);
+	IceMonkey i = new IceMonkey(575, 590);
+	Cannon cannon = new Cannon(200, 300);
 	ArrayList<Shooting> temp = new ArrayList<Shooting>();
 	ArrayList<TackShooting> tackTemp = new ArrayList<TackShooting>();
 	ArrayList<CannonShooting> bombs = new ArrayList<CannonShooting>();
 	boolean tempB = false;
-	TackShooter ts = new TackShooter(120, 590);
-	Cannon cannon = new Cannon(200, 300);
 	Music musicOn = new Music(915, 700);
 	Sound soundOn = new Sound(865, 700);
 	Music musicOff = new Music();
@@ -42,6 +43,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	// DartMonkey, TackShooter, IceMonkey, Cannon, SuperMonkey
 	Range dr = new Range(true, false, false, false, false, d.getX(), d.getY());
 	Range tsr = new Range(false, true, false, false, false, ts.getX(), ts.getY());
+	Range ir = new Range(false, false, true, false, false, i.getX(), i.getY());
 	Range cannonr = new Range(false, false, false, true, false, cannon.getX(), cannon.getY());
 	Music sweep = new Music("btdTheme.wav", true);
 	
@@ -65,7 +67,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	TackShooter tsShop = new TackShooter(878, 163);
 	IceMonkey iShop = new IceMonkey(788, 245);
 	Cannon cShop = new Cannon(875, 250);
-	SuperMonkey sShop = new SuperMonkey(785, 340);
+	//SuperMonkey sShop = new SuperMonkey(785, 340);
 	Lives l = new Lives(800, 45);
 	Money m = new Money(800, 85);
 	int lives = 100;
@@ -74,22 +76,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 	
 	public void paint(Graphics g) {
-		
-
-		
 		super.paintComponent(g);
-		
-		//b.paint(g);
-
-		d.paint(g);
-			
-		
-
 		map.paint(g);
-		cannon.paint(g);
 		d.paint(g);
 		//d2.paint(g); 
 		ts.paint(g);
+		i.paint(g);
+		cannon.paint(g);
 		bloon.paint(g);
 		bloon3.paint(g);
 		bloon4.paint(g);
@@ -143,7 +136,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		tsShop.paint(g);
 		iShop.paint(g);
 		cShop.paint(g);
-		sShop.paint(g);
+		//sShop.paint(g);
 		if (musicCount % 2 == 0) {
 			musicOn.paint(g);
 		} else {
@@ -156,6 +149,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		}
 		dr.paint(g);
 		tsr.paint(g);
+		ir.paint(g);
 		cannonr.paint(g);
 	}
 	
@@ -235,23 +229,23 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				}
 			}
 			
-			dX /= length;
-			dY /= length;
+		
 			
 			System.out.println("dX: " + dX); 
 			System.out.println("dY: "+ dY); 
 			
-			tempSpeedX = dX * 5;
-			tempSpeedY = dY * 5;
+		
 
 		}
 		
-			
+			 
 		// for detecting the monkeys you want to buy, will edit what it does later
 
 		 
+		if(tempSpeedX != 0 && tempSpeedY != 0) {
+			temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY));
+		}
 		
-		temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY));
 		for (int i = 1; i <= 8; i++) {
 			tackTemp.add(new TackShooting(ts.getX() + 35, ts.getY() + 37, 3, 3, i));
 		}

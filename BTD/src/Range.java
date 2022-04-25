@@ -56,7 +56,7 @@ public class Range {
 			g.drawOval((x + 35) - 100, (y + 35) - 100, 200, 200);
 		}
 		if (rangeType == 3) {
-			
+			g.drawOval((x + 35) - 100, (y + 40) - 100, 200, 200);
 		}
 		if (rangeType == 4) {
 			g.drawOval((x + 30) - 250, (y + 30) - 250, 500, 500);
