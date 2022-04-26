@@ -26,14 +26,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	//objects and variables for towers
 	Map map = new Map(0, 0);
 	DartMonkey d = new DartMonkey(50, 400);
+	SuperMonkey s = new SuperMonkey(500, 510); 
 	//DartMonkey d2 = new DartMonkey(100, 100);
 	TackShooter ts = new TackShooter(120, 590);
 	IceMonkey i = new IceMonkey(575, 590);
 	Cannon cannon = new Cannon(200, 300);
 	ArrayList<Shooting> temp = new ArrayList<Shooting>();
+	ArrayList<Shooting> sMonkeyBullets = new ArrayList<Shooting>();
 	ArrayList<TackShooting> tackTemp = new ArrayList<TackShooting>();
 	ArrayList<CannonShooting> bombs = new ArrayList<CannonShooting>();
 	boolean tempB = false;
+	boolean sMonkeyBulletsB = false; 
 	Music musicOn = new Music(915, 700);
 	Sound soundOn = new Sound(865, 700);
 	Music musicOff = new Music();
@@ -80,6 +83,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		map.paint(g);
 		d.paint(g);
 		//d2.paint(g); 
+		s.paint(g);
 		ts.paint(g);
 		i.paint(g);
 		cannon.paint(g);
@@ -92,6 +96,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		}
 
 		if(tempB == true) {
+			for(int i = 0; i < temp.size(); i++) {
+				(temp.get(i)).paint(g); 
+			}
+
+		}
+		
+		if(sMonkeyBulletsB == true) {
 			for(int i = 0; i < temp.size(); i++) {
 				(temp.get(i)).paint(g); 
 			}
@@ -174,6 +185,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		sweep.play();
 		temp.add(new Shooting(d.getX(), d.getY(), 2, 2));
 		tempB = true; 
+		sMonkeyBullets.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
+		sMonkeyBulletsB = true; 
 		testBloons.add(new Bloon(1)); 
 		testBloons.add(new Bloon(2));
 		testBloons.add(new Bloon(2.5));
@@ -238,12 +251,59 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 		}
 		
+		//BULLET TRACKING FOR SUPERMONKEY
+				double sMonkeyBulletSpeedX = 0;
+				double sMonkeyBulletSpeedY = 0;
+				
+				//int k = 2; 
+				for(int k = 0; k < testBloons.size(); k++) {
+					if (Math.abs(testBloons.get(k).getX() - s.getX()) <= s.getR()
+							&& Math.abs(testBloons.get(k).getY() - s.getY()) <= s.getR()) {
+			
+						// getting distance
+						double dX = testBloons.get(k).getX() - s.getX();
+						double dY = testBloons.get(k).getY() - s.getY();
+			
+						// finding length w/ Pythagorean Theorem
+						double length = (int) (Math.sqrt(dX * dX + dY * dY));
+			
+						// scaling distance for speed calculation
+						dX /= length;
+						dY /= length;
+						sMonkeyBulletSpeedX = dX * 5;
+						sMonkeyBulletSpeedY = dY * 5;
+			
+						// adding bullet shooting towards bloon to list
+						sMonkeyBullets.add(new Shooting(s.getX(), s.getY(), sMonkeyBulletSpeedX, sMonkeyBulletSpeedY));
+			
+						// scanning for dart hitting bloon
+						if (sMonkeyBullets.size() > 0) {
+							for (int i = 0; i < sMonkeyBullets.size(); i++) {
+								for (int j = 0; j < testBloons.size(); j++) {
+									if (Math.abs(sMonkeyBullets.get(i).getX() - testBloons.get(j).getX()) <= s.getR()
+											&& Math.abs(sMonkeyBullets.get(i).getY() - testBloons.get(j).getY()) <= s.getR()
+											&& !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
+										testBloons.get(j).changePicture("/imgs/poppedBloon.png");
+										break;
+										// delay(25);
+										// long time1 = System.currentTimeMillis();
+									}
+								}
+							}
+						}
+					}
+				}
+		
 			 
 		// for detecting the monkeys you want to buy, will edit what it does later
 
 		 
 		if(tempSpeedX != 0 && tempSpeedY != 0) {
 			temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY));
+		}
+		
+		if(sMonkeyBulletSpeedX != 0 && sMonkeyBulletSpeedY != 0) {
+			temp.add(new Shooting(s.getX(), s.getY(), sMonkeyBulletSpeedX, sMonkeyBulletSpeedY));
 		}
 		
 		for (int i = 1; i <= 8; i++) {
