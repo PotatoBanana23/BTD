@@ -1,4 +1,5 @@
 /imgs/
+/Sound.class
 /Bloon.class
 /Cannon.class
 /DartMonkey.class
@@ -17,9 +18,9 @@
 /Money.class
 /Cannon.class
 /CannonShooting.class
-
-
 /Music.class
 /Tack.class
 /TackShooting.class
 /superMonkey.class
+/IceMonkeyShooting.class
+

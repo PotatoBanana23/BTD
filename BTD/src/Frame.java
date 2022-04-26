@@ -28,6 +28,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	DartMonkey d = new DartMonkey(50, 400);
 	superMonkey s = new superMonkey(500, 510); 
 	//DartMonkey d2 = new DartMonkey(100, 100); 
+	//DartMonkey d2 = new DartMonkey(100, 100);
+	TackShooter ts = new TackShooter(120, 590);
+	IceMonkey i = new IceMonkey(575, 590);
+	Cannon cannon = new Cannon(200, 300);
 	ArrayList<Shooting> temp = new ArrayList<Shooting>();
 	ArrayList<Shooting> sMonkeyBullets = new ArrayList<Shooting>();
 	ArrayList<TackShooting> tackTemp = new ArrayList<TackShooting>();
@@ -36,6 +40,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	boolean sMonkeyBulletsB = false; 
 	TackShooter ts = new TackShooter(120, 590);
 	Cannon cannon = new Cannon(200, 300);
+	Music musicOn = new Music(915, 700);
+	Sound soundOn = new Sound(865, 700);
+	Music musicOff = new Music();
+	Sound soundOff = new Sound();
+	int musicCount = 0;
+	int soundCount = 0;
+	// DartMonkey, TackShooter, IceMonkey, Cannon, SuperMonkey
+	Range dr = new Range(true, false, false, false, false, d.getX(), d.getY());
+	Range tsr = new Range(false, true, false, false, false, ts.getX(), ts.getY());
+	Range ir = new Range(false, false, true, false, false, i.getX(), i.getY());
+	Range cannonr = new Range(false, false, false, true, false, cannon.getX(), cannon.getY());
 	Music sweep = new Music("btdTheme.wav", true);
 	
 	
@@ -70,12 +85,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		super.paintComponent(g);
 		
+		super.paintComponent(g);
 		map.paint(g);
-		cannon.paint(g);
 		d.paint(g);
 		//d2.paint(g); 
 		s.paint(g);
 		ts.paint(g);
+		i.paint(g);
+		cannon.paint(g);
 		bloon.paint(g);
 		bloon3.paint(g);
 		bloon4.paint(g);
@@ -104,10 +121,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			for (int i = 0; i < testBloons.size(); i++) {
 				(testBloons.get(i)).paint(g);
 			}
-			
-		
-
-
 			
 			for (int i = 0; i < bombs.size(); i++) {
 				bombs.get(i).paint(g);
@@ -144,6 +157,22 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		iShop.paint(g);
 		cShop.paint(g);
 		sShop.paint(g);
+		cShop.paint(g);
+		//sShop.paint(g);
+		if (musicCount % 2 == 0) {
+			musicOn.paint(g);
+		} else {
+			musicOff.paint(g);
+		}
+		if (soundCount % 2 == 0) {
+			soundOn.paint(g);
+		} else {
+			soundOff.paint(g);
+		}
+		dr.paint(g);
+		tsr.paint(g);
+		ir.paint(g);
+		cannonr.paint(g);
 	}
 	
 	public static void main(String[] arg) {
@@ -163,8 +192,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		Timer t = new Timer(10, this);
 		t.start();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		sweep.play();
 		f.setVisible(true);
+		sweep.play();
 		temp.add(new Shooting(d.getX(), d.getY(), 2, 2));
 		tempB = true;
 		sMonkeyBullets.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
@@ -316,7 +345,24 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		if (m.getX() > 785 && m.getX() < 865 && m.getY() > 365 && m.getY() < 445) {
 			System.out.println("super monkey");
 		}
-
+		
+		if (m.getX() >= 915 && m.getX() <= 965 && m.getY() >= 700 + 25 && m.getY() <= 750 + 25) {
+			musicCount++;
+			if (musicCount % 2 == 0) {
+				sweep.play();
+			} else {
+				sweep.stop();
+			}
+		}
+		if (m.getX() >= 865 && m.getX() <= 915 && m.getY() >= 700 + 25 && m.getY() <= 750 + 25) {
+			soundCount++;
+			if (soundCount % 2 == 0) {
+				// sound . play here
+			} else {
+				// sound . stop here
+			}
+		}
+		
 	}
 	
 	public static void delay(int millisec) {
