@@ -166,8 +166,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		sweep.play();
 		f.setVisible(true);
 		temp.add(new Shooting(d.getX(), d.getY(), 2, 2));
+		tempB = true;
 		sMonkeyBullets.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
-		tempB = true; 
+		sMonkeyBulletsB = true; 
 		testBloons.add(new Bloon(1)); 
 		testBloons.add(new Bloon(2));
 		testBloons.add(new Bloon(2.5));
@@ -228,39 +229,43 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 		}
 		
+		//BULLET TRACKING FOR SUPERMONKEY
 		double sMonkeyBulletSpeedX = 0;
 		double sMonkeyBulletSpeedY = 0;
-
-		if (Math.abs(testBloons.get(0).getX() - s.getX()) <= s.getR()
-				&& Math.abs(testBloons.get(0).getY() - s.getY()) <= s.getR()) {
-
-			// getting distance
-			double dX = testBloons.get(0).getX() - s.getX();
-			double dY = testBloons.get(0).getY() - s.getY();
-
-			// finding length w/ Pythagorean Theorem
-			double length = (int) (Math.sqrt(dX * dX + dY * dY));
-
-			// scaling distance for speed calculation
-			dX /= length;
-			dY /= length;
-			sMonkeyBulletSpeedX = dX * 5;
-			sMonkeyBulletSpeedY = dY * 5;
-
-			// adding bullet shooting towards bloon to list
-			sMonkeyBullets.add(new Shooting(d.getX(), d.getY(), sMonkeyBulletSpeedX, sMonkeyBulletSpeedY));
-
-			// scanning for dart hitting bloon
-			if (sMonkeyBullets.size() > 0) {
-				for (int i = 0; i < sMonkeyBullets.size(); i++) {
-					for (int j = 0; j < testBloons.size(); j++) {
-						if (Math.abs(temp.get(i).getX() - testBloons.get(j).getX()) <= s.getR()
-								&& Math.abs(temp.get(i).getY() - testBloons.get(j).getY()) <= s.getR()
-								&& !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
-							testBloons.get(j).changePicture("/imgs/poppedBloon.png");
-							break;
-							// delay(25);
-							// long time1 = System.currentTimeMillis();
+		
+		//int k = 2; 
+		for(int k = 0; k < testBloons.size(); k++) {
+			if (Math.abs(testBloons.get(k).getX() - s.getX()) <= s.getR()
+					&& Math.abs(testBloons.get(k).getY() - s.getY()) <= s.getR()) {
+	
+				// getting distance
+				double dX = testBloons.get(k).getX() - s.getX();
+				double dY = testBloons.get(k).getY() - s.getY();
+	
+				// finding length w/ Pythagorean Theorem
+				double length = (int) (Math.sqrt(dX * dX + dY * dY));
+	
+				// scaling distance for speed calculation
+				dX /= length;
+				dY /= length;
+				sMonkeyBulletSpeedX = dX * 5;
+				sMonkeyBulletSpeedY = dY * 5;
+	
+				// adding bullet shooting towards bloon to list
+				sMonkeyBullets.add(new Shooting(s.getX(), s.getY(), sMonkeyBulletSpeedX, sMonkeyBulletSpeedY));
+	
+				// scanning for dart hitting bloon
+				if (sMonkeyBullets.size() > 0) {
+					for (int i = 0; i < sMonkeyBullets.size(); i++) {
+						for (int j = 0; j < testBloons.size(); j++) {
+							if (Math.abs(sMonkeyBullets.get(i).getX() - testBloons.get(j).getX()) <= s.getR()
+									&& Math.abs(sMonkeyBullets.get(i).getY() - testBloons.get(j).getY()) <= s.getR()
+									&& !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
+								testBloons.get(j).changePicture("/imgs/poppedBloon.png");
+								break;
+								// delay(25);
+								// long time1 = System.currentTimeMillis();
+							}
 						}
 					}
 				}
@@ -273,6 +278,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		 
 		if(tempSpeedX != 0 && tempSpeedY != 0) {
 			temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY));
+		}
+		if(sMonkeyBulletSpeedX != 0 && sMonkeyBulletSpeedY != 0) {
+			temp.add(new Shooting(s.getX(), s.getY(), sMonkeyBulletSpeedX, sMonkeyBulletSpeedY));
 		}
 		
 		for (int i = 1; i <= 8; i++) {
