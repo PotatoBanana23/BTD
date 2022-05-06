@@ -48,19 +48,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Music sweep = new Music("btdTheme.wav", true);
 	
 	
-	//test balloons
-	ArrayList<Bloon> bloons = new ArrayList<Bloon>(); {
-	for (int i = 2; i < 10; i++) {
-		int temp = i;
-			for (int j = 0; j < 1; j++) {
-				bloons.add(new Bloon(temp));
-			}
-		}
-	}
-	Bloon bloon = new Bloon(1);
-	Bloon bloon3 = new Bloon(9.5);
-	Bloon bloon4 = new Bloon(9); 
-	Bloon bloon5 = new Bloon(10);
 
 	//shop and lives and money
 	DartMonkey dShop = new DartMonkey(785, 160);
@@ -83,13 +70,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		ts.paint(g);
 		i.paint(g);
 		cannon.paint(g);
-		bloon.paint(g);
-		bloon3.paint(g);
-		bloon4.paint(g);
-		bloon5.paint(g);
-		for (int i = 0; i < bloons.size(); i++) {
-			bloons.get(i).paint(g);
-		}
+		//bloon.paint(g);
+		//bloon3.paint(g);
+		//bloon4.paint(g);
+		//bloon5.paint(g);
+		//for (int i = 0; i < bloons.size(); i++) {
+		//	bloons.get(i).paint(g);
+		//}
 
 		if(tempB == true) {
 			for(int i = 0; i < temp.size(); i++) {
@@ -183,11 +170,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	@Override
 	public void mouseClicked(MouseEvent m) {
-		// TODO Auto-generated method stub
-		
+
+		//all for DART MONKEY SHOOTING
 		double tempSpeedX = 0;
 		double tempSpeedY = 0; 
-
+		
 		if (Math.abs(testBloons.get(0).getX() - d.getX()) <= d.getR()
 				&& Math.abs(testBloons.get(0).getY() - d.getY()) <= d.getR()) {
 			
@@ -229,27 +216,75 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				}
 			}
 			
-		
-			
 			System.out.println("dX: " + dX); 
 			System.out.println("dY: "+ dY); 
-			
-		
-
 		}
+		//end dart monkey shooting
+		
+		
+		//all for CANNON SHOOTING
+		double bombSpeedX = 0;
+		double bombSpeedY = 0; 
+		
+		if (Math.abs(testBloons.get(0).getX() - cannon.getX()) <= cannon.getR()
+				&& Math.abs(testBloons.get(0).getY() - cannon.getY()) <= cannon.getR()) { 
+			
+			//getting distance
+			double cannonDistanceX = testBloons.get(0).getX() - cannon.getX();
+			double cannonDistanceY = testBloons.get(0).getY() - cannon.getY();
+			
+
+			//finding length w/ Pythagorean Theorem 
+			double length = (int) (Math.sqrt(cannonDistanceX * cannonDistanceX + cannonDistanceY * cannonDistanceY));
+			
+			//scaling distance for speed calculation
+			cannonDistanceX /= length;
+			cannonDistanceY /= length;
+			bombSpeedX = cannonDistanceX * 5;
+			bombSpeedY = cannonDistanceY * 5;
+
+			//adding bullet shooting towards bloon to list
+			bombs.add(new CannonShooting(cannon.getX(), cannon.getY(), bombSpeedX, bombSpeedY, "/imgs/cannonball.png"));
+			
+			//scanning for cannon hitting bloon
+			if (bombs.size() > 0) {
+				for (int i = 0; i < bombs.size(); i++) {
+					for (int j = 0; j < testBloons.size(); j++) {
+						if (Math.abs(bombs.get(i).getX() - testBloons.get(j).getX()) <= cannon.getR()
+								&& Math.abs(bombs.get(i).getY() - testBloons.get(j).getY()) <= cannon.getR()
+								&& !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
+							testBloons.get(j).changePicture("/imgs/poppedBloon.png");
+				
+							int index = bombs.size()-1;
+							int x = bombs.get(index).getX();
+							int y = bombs.get(index).getY();
+							bombs.remove(index);
+							CannonShooting temp = new CannonShooting(x-50, y-50, 0, 0, "/imgs/cannonExplosion.png");
+							bombs.add(index,temp);
+							bombs.get(index).setExploded();
+							
+							break;
+							
+						}
+						
+					}
+				}
+			}
+			
+		}
+		
 		
 			 
 		// for detecting the monkeys you want to buy, will edit what it does later
 
 		 
-		if(tempSpeedX != 0 && tempSpeedY != 0) {
-			temp.add(new Shooting(d.getX(), d.getY(), tempSpeedX, tempSpeedY));
-		}
 		
 		for (int i = 1; i <= 8; i++) {
 			tackTemp.add(new TackShooting(ts.getX() + 35, ts.getY() + 37, 3, 3, i));
 		}
-		bombs.add(new CannonShooting(cannon.getX(), cannon.getY(), tempSpeedX, tempSpeedY, "/imgs/cannonball.png")); 
+		
+		
+		
 
 	
 	
