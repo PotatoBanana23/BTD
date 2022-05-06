@@ -13,6 +13,7 @@ public class Bloon{
 	private AffineTransform tx;
 	private double speed;
 	private String fileName; 
+	private boolean beenShot; 
 
 	public Bloon(double speed) {
 		fileName = "/imgs/redBloon.png";
@@ -20,6 +21,7 @@ public class Bloon{
 		x = 0;
 		y = 350;
 		this.speed = speed;
+		beenShot = false; 
 
 		tx = AffineTransform.getTranslateInstance(x, y);
 		init(x, y); 				//initialize the location of the image
@@ -146,6 +148,14 @@ public class Bloon{
 		return fileName; 
 	}
 	
+	public boolean getBeenShot() {
+		return beenShot;
+	}
+	
+	public void setBeenShot(boolean beenShot) {
+		this.beenShot = beenShot;
+	}
+
 	private void update() {
 		tx.setToTranslation(x, y);
 		tx.scale(0.7, 0.7);
