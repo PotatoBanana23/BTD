@@ -14,10 +14,12 @@ public class Bloon{
 	private double speed;
 	private String fileName; 
 	private boolean beenShot; 
+	private String color;
 
-	public Bloon(double speed) {
-		fileName = "/imgs/redBloon.png";
-		img = getImage("/imgs/redBloon.png"); //load the image for Tree
+	public Bloon(double speed, String fileName, String color) {
+		this.fileName = fileName;
+		img = getImage(fileName);
+		this.color = color;
 		x = 0;
 		y = 350;
 		this.speed = speed;
@@ -32,6 +34,34 @@ public class Bloon{
 		fileName = newFileName; 
 		img = getImage(newFileName);
 		init(x, y);
+	}
+	
+	public void pop() {
+		if (color.equals("red")) {
+			changePicture("/imgs/poppedBloon.png");
+			setBeenShot(true);
+			setSpeed(0);
+			
+		} else if (color.equals("blue")) {
+			changePicture("/imgs/redBloon.png");
+			setColor("red");
+			setSpeed(1);
+			
+		} else if (color.equals("green")) {
+			changePicture("/imgs/blueBloon.png");
+			setColor("blue");
+			setSpeed(2);
+			
+		} else if (color.equals("yellow")) {
+			changePicture("/imgs/greenBloon.png");
+			setColor("green");
+			setSpeed(3);
+			
+		} else if (color.equals("pink")) {
+			changePicture("/imgs/yellowBloon.png");
+			setColor("yellow");
+			setSpeed(4);
+		}
 	}
 	
 	public void move() {
@@ -94,40 +124,7 @@ public class Bloon{
 		if (y <= 100 && y > -20 && x > 410-(speed+1) && x < 410+(speed+1)) {
 			y -= speed;
 		}
-		
-		
-		
-		
-		
-		//move();
-		
-//		if (y > 170 && x == 140) {
-//			y -= speed;
-//		} else if (y < 170){
-//			y = 170;
-//		}
-//		
-//		if (x < 330 && y == 170) {
-//			x += speed;
-//		}else if (x > 330) {
-//			x = 330;
-//		}
-		
-		
-//		else if (y > 170) {
-//			y -= speed;
-//		} else if (x < 330) {
-//			x += speed;
-//		} else if (x >= 330 && y < 550) {
-//			y += speed;
-//		} else if (x > 90) {
-//			x -= speed;
-//		} else if (y < 690) {
-//			y += speed;
-//		}
-		
-		//x += speedX;
-		//y += speedY;
+
 		update();
 
 	}
@@ -150,6 +147,14 @@ public class Bloon{
 	
 	public boolean getBeenShot() {
 		return beenShot;
+	}
+	
+	public String getColor() {
+		return color;
+	}
+	
+	public void setColor(String color) {
+		this.color = color;
 	}
 	
 	public void setBeenShot(boolean beenShot) {
@@ -176,7 +181,11 @@ public class Bloon{
 		}
 		return tempImage;
 	}
+	
+	
 
 	
 
 }
+
+
