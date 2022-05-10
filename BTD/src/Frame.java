@@ -167,10 +167,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		tempB = true; 
 		sMonkeyBullets.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
 		sMonkeyBulletsB = true; 
-		testBloons.add(new Bloon(1)); 
-		testBloons.add(new Bloon(2));
-		testBloons.add(new Bloon(2.5));
-		testBloons.add(new Bloon(1.75));
+		testBloons.add(new RedBloon());
+		testBloons.add(new BlueBloon());
+		testBloons.add(new GreenBloon());
+		testBloons.add(new YellowBloon());
+		testBloons.add(new PinkBloon());
 	}
 	
 
@@ -212,8 +213,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 						if (Math.abs(temp.get(i).getX() - testBloons.get(j).getX()) <= d.getR()
 								&& Math.abs(temp.get(i).getY() - testBloons.get(j).getY()) <= d.getR()
 								&& !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
-							testBloons.get(j).changePicture("/imgs/poppedBloon.png");
-							testBloons.get(j).setBeenShot(true);
+							
+							//testBloons.get(j).changePicture("/imgs/poppedBloon.png");
+							testBloons.get(j).pop();
+							//testBloons.get(j).setBeenShot(true);
 							break;
 							// delay(25);
 							// long time1 = System.currentTimeMillis();
@@ -264,7 +267,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 						if (Math.abs(bombs.get(i).getX() - testBloons.get(j).getX()) <= cannon.getR()
 								&& Math.abs(bombs.get(i).getY() - testBloons.get(j).getY()) <= cannon.getR()
 								&& !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
-							testBloons.get(j).changePicture("/imgs/poppedBloon.png");
+							
+							//testBloons.get(j).changePicture("/imgs/poppedBloon.png");
+							testBloons.get(j).pop();
+							//testBloons.get(j).setBeenShot(true);
 				
 							int index = bombs.size()-1;
 							int x = bombs.get(index).getX();
@@ -319,8 +325,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 									if (Math.abs(sMonkeyBullets.get(i).getX() - testBloons.get(j).getX()) <= s.getR()
 											&& Math.abs(sMonkeyBullets.get(i).getY() - testBloons.get(j).getY()) <= s.getR()
 											&& !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
-										testBloons.get(j).changePicture("/imgs/poppedBloon.png");
-										testBloons.get(j).setBeenShot(true);
+										
+										
+										//testBloons.get(j).changePicture("/imgs/poppedBloon.png");
+										testBloons.get(j).pop();
 										break;
 										// delay(25);
 										// long time1 = System.currentTimeMillis();
