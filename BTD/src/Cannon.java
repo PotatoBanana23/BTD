@@ -15,7 +15,7 @@ public class Cannon {
 		img = getImage("/imgs/cannon.png"); //load the image for Tree
 		this.x = x;
 		this.y = y;
-		r = 125;
+		r = 600;
 
 		tx = AffineTransform.getTranslateInstance(x, y);
 		init(x, y); 				//initialize the location of the image

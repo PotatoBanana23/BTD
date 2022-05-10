@@ -446,9 +446,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			CannonShooting temp = new CannonShooting(x-50, y-50, 0, 0, "/imgs/cannonExplosion.png");
 			bombs.add(index,temp);
 			bombs.get(index).setExploded();
-			
-			
-			
 		}
 	}
 	
