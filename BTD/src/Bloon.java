@@ -14,10 +14,13 @@ public class Bloon{
 	private double speed;
 	private String fileName; 
 	private boolean beenShot; 
+	private String color;
 
-	public Bloon(double speed) {
-		fileName = "/imgs/redBloon.png";
-		img = getImage("/imgs/redBloon.png"); //load the image for Tree
+
+	public Bloon(double speed, String fileName, String color) {
+		this.fileName = fileName;
+		img = getImage(fileName);
+		this.color = color;
 		x = 0;
 		y = 350;
 		this.speed = speed;
@@ -34,6 +37,44 @@ public class Bloon{
 		init(x, y);
 	}
 	
+	public void pop() {
+		if (color.equals("red")) {
+			changePicture("/imgs/poppedBloon.png");
+			setBeenShot(true);
+			setColor("popped");
+			
+		} else if (color.equals("blue")) {
+			setColor("red");
+			speed = 1;
+			fileName = "/imgs/redBloon.png";
+			setSpeed(speed);
+			changePicture(fileName);
+			
+		} else if (color.equals("green")) {
+			setColor("blue");
+			speed = 2;
+			fileName = "/imgs/blueBloon.png";
+			setSpeed(speed);
+			changePicture(fileName);
+
+			
+		} else if (color.equals("yellow")) {
+			speed = 3;
+			fileName = "/imgs/greenBloon.png";
+			setColor("green");
+			setSpeed(speed);
+			changePicture(fileName);
+			
+		} else if (color.equals("pink")) {
+			speed = 4;
+			fileName = "/imgs/yellowBloon.png";
+			setSpeed(speed);
+			changePicture(fileName);
+			setColor("yellow");
+			
+		}
+	}
+	
 	public void move() {
 		for (int i = 0; i < 140; i += speed) {
 			x += speed;
@@ -46,6 +87,27 @@ public class Bloon{
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(img, tx, null);
 		
+		//bloon speed and fileName
+//		if (color.equals("red")) {
+//			fileName = "/imgs/redBloon.png";
+//			changePicture(fileName);
+//		} else if (color.equals("blue")) {
+//			fileName = "/imgs/blueBloon.png";
+//			changePicture(fileName);
+//		} else if (color.equals("green")) {
+//			fileName = "/imgs/greenBloon.png";
+//			changePicture(fileName);
+//		} else if (color.equals("yellow")) {
+//			fileName = "/imgs/yellowBloon.png";
+//			changePicture(fileName);
+//		} else if (color.equals("pink")) {
+//			fileName = "/imgs/pinkBloon.png";
+//			changePicture(fileName);
+//		} else if (color.equals("popped")) {
+//			setSpeed(0);
+//			fileName = "/imgs/poppedBloon.png";
+//			changePicture(fileName);
+//		}
 		
 		//bloon movement
 		if (x < 140 && x >= 0 && y == 350) {
@@ -94,40 +156,7 @@ public class Bloon{
 		if (y <= 100 && y > -20 && x > 410-(speed+1) && x < 410+(speed+1)) {
 			y -= speed;
 		}
-		
-		
-		
-		
-		
-		//move();
-		
-//		if (y > 170 && x == 140) {
-//			y -= speed;
-//		} else if (y < 170){
-//			y = 170;
-//		}
-//		
-//		if (x < 330 && y == 170) {
-//			x += speed;
-//		}else if (x > 330) {
-//			x = 330;
-//		}
-		
-		
-//		else if (y > 170) {
-//			y -= speed;
-//		} else if (x < 330) {
-//			x += speed;
-//		} else if (x >= 330 && y < 550) {
-//			y += speed;
-//		} else if (x > 90) {
-//			x -= speed;
-//		} else if (y < 690) {
-//			y += speed;
-//		}
-		
-		//x += speedX;
-		//y += speedY;
+
 		update();
 
 	}
@@ -140,7 +169,7 @@ public class Bloon{
 		return y;
 	}
 	//setters for speed
-	public void setSpeed(int speed) {
+	public void setSpeed(double speed) {
 		this.speed = speed;
 	}
 	
@@ -152,6 +181,16 @@ public class Bloon{
 		return beenShot;
 	}
 	
+
+	public String getColor() {
+		return color;
+	}
+	
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
+
 	public void setBeenShot(boolean beenShot) {
 		this.beenShot = beenShot;
 	}
@@ -176,7 +215,11 @@ public class Bloon{
 		}
 		return tempImage;
 	}
+	
+	
 
 	
 
 }
+
+
