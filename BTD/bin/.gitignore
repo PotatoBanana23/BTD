@@ -1,41 +1,26 @@
-/imgs/
-<<<<<<< HEAD
-/Sound.class
-=======
 /Bloon.class
+/BlueBloon.class
 /Cannon.class
+/CannonShooting.class
 /DartMonkey.class
 /Frame.class
+/GreenBloon.class
 /IceMonkey.class
+/IceMonkeyShooting.class
 /Lives.class
 /Map.class
 /Money.class
+/Music.class
+/PinkBloon.class
+/Popping.class
+/Range.class
+/RedBloon.class
 /Runner.class
 /Shooting.class
+/Sound.class
 /SuperMonkey.class
 /TackShooter.class
-/test.class
-/Shop.class
-/Lives.class
-/Money.class
-/Cannon.class
-/CannonShooting.class
-
-
-/Music.class
-/Tack.class
 /TackShooting.class
->>>>>>> branch 'master' of https://github.com/PotatoBanana23/BTD
-/IceMonkeyShooting.class
-<<<<<<< HEAD
-/Popping.class
-=======
-/Range.class
->>>>>>> refs/heads/master
-/BlueBloon.class
-/RedBloon.class
-/GreenBalloon.class
-/GreenBloon.class
-/Bloon$BlueBloon.class
+/imgs/
 /YellowBloon.class
-/PinkBloon.class
+/test.class
