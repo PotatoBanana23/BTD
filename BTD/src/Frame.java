@@ -33,7 +33,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Cannon cannon = new Cannon(200, 300);
 	ArrayList<Shooting> temp = new ArrayList<Shooting>();
 	ArrayList<Shooting> sMonkeyBullets = new ArrayList<Shooting>();
-	ArrayList<TackShooting> tackTemp = new ArrayList<TackShooting>();
+	ArrayList<TackShooting> tacks = new ArrayList<TackShooting>();
 	ArrayList<CannonShooting> bombs = new ArrayList<CannonShooting>();
 	boolean tempB = false;
 	boolean sMonkeyBulletsB = false; 
@@ -100,8 +100,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				}
 			}
 		
-		for(int i = 0; i < tackTemp.size(); i++) {
-			(tackTemp.get(i)).paint(g); 
+		for(int i = 0; i < tacks.size(); i++) {
+			(tacks.get(i)).paint(g); 
 		}
 		Color lightBrown = new Color(153, 102, 0);
 		Color brown = new Color(102, 51, 0);
@@ -235,6 +235,31 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		}
 		//end dart monkey shooting
 		
+		//start tack shooter shooting
+		for(int k = 0; k < testBloons.size(); k++) {
+			if (Math.abs(testBloons.get(k).getX() - (ts.getX()) + 35) <= ts.getR() && Math.abs(testBloons.get(k).getY() - (ts.getY() + 35)) <= ts.getR()) {
+				//adding bullet shooting towards bloon to list
+				for (int i = 1; i <= 8; i++) {
+					tacks.add(new TackShooting(ts.getX() + 35, ts.getY() + 37, 3, 3, i));
+				}
+
+				//scanning for dart hitting bloon
+				if (tacks.size() > 0) {
+					for (int i = 0; i < tacks.size(); i++) {
+						for (int j = 0; j < testBloons.size(); j++) {
+							if (Math.abs(tacks.get(i).getX() - testBloons.get(j).getX()) <= ts.getR() && Math.abs(tacks.get(i).getY() - testBloons.get(j).getY()) <= ts.getR() && !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
+								testBloons.get(j).changePicture("/imgs/poppedBloon.png");
+								money++; //will also edit to support multiple layer pops
+								break;
+								// delay(25);
+								// long time1 = System.currentTimeMillis();
+							}
+						}
+					}
+				}
+			}
+		}
+		//end tack shooter shooting
 		
 		//all for CANNON SHOOTING
 		double bombSpeedX = 0;
@@ -346,10 +371,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			//temp.add(new Shooting(s.getX(), s.getY(), sMonkeyBulletSpeedX, sMonkeyBulletSpeedY));
 		}
 		
-		for (int i = 1; i <= 8; i++) {
-			tackTemp.add(new TackShooting(ts.getX() + 35, ts.getY() + 37, 3, 3, i));
+		/*for (int i = 1; i <= 8; i++) {
+			tacks.add(new TackShooting(ts.getX() + 35, ts.getY() + 37, 3, 3, i));
 		}
-		
+		*/
 		
 		
 

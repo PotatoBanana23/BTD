@@ -9,7 +9,7 @@ public class TackShooter {
 	private int x, y;
 	private Image img; 	
 	private AffineTransform tx;
-	private int r = 20; 
+	private int r = 120; 
 
 	public TackShooter(int x, int y) {
 		img = getImage("/imgs/tackShooter.png"); //load the image for Tree
