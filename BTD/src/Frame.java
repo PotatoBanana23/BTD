@@ -28,9 +28,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	DartMonkey d = new DartMonkey(50, 400);
 	SuperMonkey s = new SuperMonkey(500, 510); 
 	//DartMonkey d2 = new DartMonkey(100, 100);
-	//TackShooter ts = new TackShooter(120, 590);
+	TackShooter ts = new TackShooter(120, 590);
 	IceMonkey i = new IceMonkey(575, 590);
-	//Cannon cannon = new Cannon(200, 300);
+	Cannon cannon = new Cannon(200, 300);
 	ArrayList<Shooting> temp = new ArrayList<Shooting>();
 	ArrayList<Shooting> sMonkeyBullets = new ArrayList<Shooting>();
 	ArrayList<TackShooting> tackTemp = new ArrayList<TackShooting>();
@@ -45,10 +45,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	int soundCount = 0;
 	// DartMonkey, TackShooter, IceMonkey, Cannon, SuperMonkey
 	Range dr = new Range(true, false, false, false, false, d.getX(), d.getY());
-	//Range tsr = new Range(false, true, false, false, false, ts.getX(), ts.getY());
+	Range tsr = new Range(false, true, false, false, false, ts.getX(), ts.getY());
 	Range ir = new Range(false, false, true, false, false, i.getX(), i.getY());
-	//Range cannonr = new Range(false, false, false, true, false, cannon.getX(), cannon.getY());
-	Range sr = new Range(false, false, false, false, true, s.getX(), s.getY()); 
+	Range cannonr = new Range(false, false, false, true, false, cannon.getX(), cannon.getY());
+	//Range sr = new Range(false, false, false, false, true, s.getX(), s.getY()); 
 	Music sweep = new Music("btdTheme.wav", true);
 
 
@@ -72,9 +72,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		d.paint(g);
 		//d2.paint(g); 
 		s.paint(g);
-		//ts.paint(g);
+		ts.paint(g);
 		i.paint(g);
-		//cannon.paint(g);
+		cannon.paint(g);
 
 
 		if(tempB == true) {
@@ -140,9 +140,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			soundOff.paint(g);
 		}
 		dr.paint(g);
-		//tsr.paint(g);
-		//ir.paint(g);
-		//cannonr.paint(g);
+		tsr.paint(g);
+		ir.paint(g);
+		cannonr.paint(g);
 		//sr.paint(g);
 	}
 	
@@ -167,7 +167,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		sweep.play();
 		temp.add(new Shooting(d.getX(), d.getY(), 2, 2));
 		tempB = true; 
-		sMonkeyBullets.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
+		sMonkeyBullets.add(new Shooting(s.getX(), s.getY(), 2, 2)); 
 		sMonkeyBulletsB = true; 
 		testBloons.add(new RedBloon());
 		testBloons.add(new BlueBloon());
@@ -244,11 +244,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//end dart monkey shooting
 		
 		
+		
 		//all for CANNON SHOOTING
 		double bombSpeedX = 0;
 		double bombSpeedY = 0; 
 		
-/*		if (Math.abs(testBloons.get(0).getX() - cannon.getX()) <= cannon.getR()
+		if (Math.abs(testBloons.get(0).getX() - cannon.getX()) <= cannon.getR()
 				&& Math.abs(testBloons.get(0).getY() - cannon.getY()) <= cannon.getR()) { 
 			
 			//getting distance
@@ -296,7 +297,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				}
 			}
 			
-		}*/
+		}
 		
 		
 		//BULLET TRACKING FOR SUPERMONKEY
