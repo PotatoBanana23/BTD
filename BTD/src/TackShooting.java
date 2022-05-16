@@ -8,6 +8,7 @@ import java.awt.geom.AffineTransform;
 import java.net.URL;
 
 public class TackShooting {
+	private int oldX, oldY;
 	private int x, y;
 	private double vX, vY; 
 	private Image img;
@@ -18,6 +19,8 @@ public class TackShooting {
 	public TackShooting(int x, int y, double vX, double vY, int val) {
 		//val is for the tack number starting from the one going bottom right bc that is unchanged image
 		img = getImage("/imgs/tack.png"); //load the image for Tree
+		oldX = x;
+		oldY = y;
 		this.x = x;
 		this.y = y;
 		double equalizer = (int) (Math.sqrt(vX*vX + vY*vY));
@@ -91,6 +94,9 @@ public class TackShooting {
 		g2.drawImage(img, tx, null);
 		x += vX; 
 		y += vY; 
+		if ((int) (Math.sqrt((oldX - x)*(oldX - x) + (oldY - y)*(oldY - y))) >= r) {
+			img = null;
+		}
 		update();
 
 	}
