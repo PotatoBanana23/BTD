@@ -218,16 +218,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 						if (Math.abs(temp.get(i).getX() - testBloons.get(j).getX()) <= d.getR()
 								&& Math.abs(temp.get(i).getY() - testBloons.get(j).getY()) <= d.getR()
 								&& !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
-							testBloons.get(j).changePicture("/imgs/poppedBloon.png");
-							testBloons.get(j).setBeenShot(true);
+							//testBloons.get(j).changePicture("/imgs/poppedBloon.png");
+							//testBloons.get(j).setBeenShot(true);
 
 							
-							//testBloons.get(j).changePicture("/imgs/poppedBloon.png");
 							testBloons.get(j).pop();
-							//testBloons.get(j).setBeenShot(true);
+							if(testBloons.get(j).getColor().equals("popped")) {
+								testBloons.get(j).setBeenShot(true);
+								testBloons.remove(j); 
+							}
 							break;
-							// delay(25);
-							// long time1 = System.currentTimeMillis();
 						}
 						/*
 						 * int c = 0; while(c < 2147483647) { c++; }
@@ -369,7 +369,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 												&& Math.abs(sMonkeyBullets.get(i).getY() - testBloons.get(j).getY()) <= s.getR()
 												&& !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
 	
-											testBloons.get(j).changePicture("/imgs/poppedBloon.png");
+											//testBloons.get(j).changePicture("/imgs/poppedBloon.png");
 											//testBloons.get(j).setBeenShot(true);
 	
 											
