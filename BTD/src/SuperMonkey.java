@@ -9,7 +9,7 @@ public class SuperMonkey {
 	private int x, y;
 	private Image img; 	
 	private AffineTransform tx;
-	private int r = 175; 
+	private int r = 300; 
 
 	public SuperMonkey(int x, int y) {
 		img = getImage("/imgs/superMonkey.png"); //load the image for Tree

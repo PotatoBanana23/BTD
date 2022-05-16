@@ -16,6 +16,7 @@ public class Bloon{
 	private boolean beenShot; 
 	private String color;
 
+
 	public Bloon(double speed, String fileName, String color) {
 		this.fileName = fileName;
 		img = getImage(fileName);
@@ -180,6 +181,7 @@ public class Bloon{
 		return beenShot;
 	}
 	
+
 	public String getColor() {
 		return color;
 	}
@@ -188,6 +190,7 @@ public class Bloon{
 		this.color = color;
 	}
 	
+
 	public void setBeenShot(boolean beenShot) {
 		this.beenShot = beenShot;
 	}
