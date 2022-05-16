@@ -103,7 +103,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		for(int i = 0; i < tacks.size(); i++) {
 			(tacks.get(i)).paint(g); 
-		} 
+
 		Color lightBrown = new Color(153, 102, 0);
 		Color brown = new Color(102, 51, 0);
 		g.setColor(lightBrown);
@@ -144,6 +144,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		ir.paint(g);
 		cannonr.paint(g);
 		//sr.paint(g);
+		}
 	}
 	
 	public static void main(String[] arg) {
@@ -412,10 +413,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			//temp.add(new Shooting(s.getX(), s.getY(), sMonkeyBulletSpeedX, sMonkeyBulletSpeedY));
 		}
 		
+
 		for (int i = 1; i <= 8; i++) {
 			//tackTemp.add(new TackShooting(ts.getX() + 35, ts.getY() + 37, 3, 3, i));
+
+		/*for (int i = 1; i <= 8; i++) {
+			tacks.add(new TackShooting(ts.getX() + 35, ts.getY() + 37, 3, 3, i));
+>>>>>>> branch 'MasterCopy' of https://github.com/PotatoBanana23/BTD
 		}
-		
+		*/
 		
 		
 
@@ -466,7 +472,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		}
 		
 	}
-//}
+}
 	
 	public static void delay(int millisec) {
 		long time1 = System.currentTimeMillis(); 
