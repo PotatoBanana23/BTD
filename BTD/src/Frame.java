@@ -103,7 +103,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		for(int i = 0; i < tacks.size(); i++) {
 			(tacks.get(i)).paint(g); 
-		}
+		} 
 		Color lightBrown = new Color(153, 102, 0);
 		Color brown = new Color(102, 51, 0);
 		g.setColor(lightBrown);
