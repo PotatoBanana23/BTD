@@ -341,7 +341,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 												
 						/*if (Math.abs(testBloons.get(k).getX() - s.getX()) <= s.getR()
 								&& Math.abs(testBloons.get(k).getY() - s.getY()) <= s.getR()) {
-						*/
+						*/ 
 						
 						if(dist <= s.getR()) {
 							// getting distance
