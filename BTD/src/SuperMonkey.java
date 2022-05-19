@@ -10,11 +10,13 @@ public class SuperMonkey {
 	private Image img; 	
 	private AffineTransform tx;
 	private int r = 300; 
+	private double delay;
 
 	public SuperMonkey(int x, int y) {
 		img = getImage("/imgs/superMonkey.png"); //load the image for Tree
 		this.x = x;
 		this.y = y;
+		delay = 0.5;
 
 		tx = AffineTransform.getTranslateInstance(x, y);
 		init(x, y); 				//initialize the location of the image
@@ -30,6 +32,7 @@ public class SuperMonkey {
 		//these are the 2 lines of code needed draw an image on the screen
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(img, tx, null);
+		delay += 0.05;
 		update();
 
 	}
@@ -65,6 +68,14 @@ public class SuperMonkey {
 	
 	public int getR() {
 		return r; 
+	}
+	
+	public double getDelay() {
+		return delay;
+	}
+	
+	public void setDelay(double delay) {
+		this.delay = delay; 
 	}
 }
 
