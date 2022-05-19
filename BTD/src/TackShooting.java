@@ -14,7 +14,7 @@ public class TackShooting {
 	private Image img;
 	private AffineTransform tx;
 	private int val;
-	private int r = 120; 
+	private int r = 100; 
 
 	public TackShooting(int x, int y, double vX, double vY, int val) {
 		//val is for the tack number starting from the one going bottom right bc that is unchanged image

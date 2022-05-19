@@ -18,13 +18,10 @@ import javax.swing.Timer;
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener, MouseMotionListener {
 	ArrayList<Bloon> testBloons = new ArrayList<Bloon>(); 
 	boolean bloonPaintCheck = false; 
-
-	//Lives l = new Lives(800, 70);
-	//Money m = new Money(800, 110);
- 
 	
 	//objects and variables for towers
 	Map map = new Map(0, 0);
+	GameOver gameOver = new GameOver(100, 100);
 	DartMonkey d = new DartMonkey(50, 400);
 	SuperMonkey s = new SuperMonkey(500, 510); 
 	//DartMonkey d2 = new DartMonkey(100, 100);
@@ -48,9 +45,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Range tsr = new Range(false, true, false, false, false, ts.getX(), ts.getY());
 	Range ir = new Range(false, false, true, false, false, i.getX(), i.getY());
 	Range cannonr = new Range(false, false, false, true, false, cannon.getX(), cannon.getY());
-	//Range sr = new Range(false, false, false, false, true, s.getX(), s.getY()); 
+	Range sr = new Range(false, false, false, false, true, s.getX(), s.getY()); 
 	Music sweep = new Music("btdTheme.wav", true);
-
+	Music sweep2 = new Music("bloonPop.wav", false);
 
 
 	//shop and lives and money
@@ -71,10 +68,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		map.paint(g);
 		d.paint(g);
 		//d2.paint(g); 
-		s.paint(g);
 		ts.paint(g);
 		i.paint(g);
 		cannon.paint(g);
+		s.paint(g);
 
 
 		if(tempB == true) {
@@ -144,8 +141,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		tsr.paint(g);
 		ir.paint(g);
 		cannonr.paint(g);
-		//sr.paint(g);
-		
+		sr.paint(g);
+		if (lives == 0) {
+			gameOver.paint(g);
+		}
 	}
 	
 	public static void main(String[] arg) {
@@ -225,6 +224,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 							
 							testBloons.get(j).pop();
+							
 							if(testBloons.get(j).getColor().equals("popped")) {
 								testBloons.get(j).setBeenShot(true);
 								testBloons.remove(j); 
@@ -302,7 +302,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 						if (Math.abs(bombs.get(i).getX() - testBloons.get(j).getX()) <= cannon.getR()
 								&& Math.abs(bombs.get(i).getY() - testBloons.get(j).getY()) <= cannon.getR()
 								&& !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
-							
+							money++;
 							//testBloons.get(j).changePicture("/imgs/poppedBloon.png");
 							testBloons.get(j).pop();
 							//testBloons.get(j).setBeenShot(true);
@@ -370,7 +370,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 										if (Math.abs(sMonkeyBullets.get(i).getX() - testBloons.get(j).getX()) <= s.getR()
 												&& Math.abs(sMonkeyBullets.get(i).getY() - testBloons.get(j).getY()) <= s.getR()
 												&& !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
-	
+											money++;
 											//testBloons.get(j).changePicture("/imgs/poppedBloon.png");
 											//testBloons.get(j).setBeenShot(true);
 	
@@ -413,14 +413,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		if(sMonkeyBulletSpeedX != 0 && sMonkeyBulletSpeedY != 0 /*&& testBloons.get(0).getBeenShot() == false*/) {
 			//temp.add(new Shooting(s.getX(), s.getY(), sMonkeyBulletSpeedX, sMonkeyBulletSpeedY));
 		}
-		
-
-		for (int i = 1; i <= 8; i++) {
-			//tackTemp.add(new TackShooting(ts.getX() + 35, ts.getY() + 37, 3, 3, i));
 
 		/*for (int i = 1; i <= 8; i++) {
 			tacks.add(new TackShooting(ts.getX() + 35, ts.getY() + 37, 3, 3, i));
->>>>>>> branch 'MasterCopy' of https://github.com/PotatoBanana23/BTD
 		}
 		*/
 		
@@ -441,19 +436,26 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 		if (m.getX() > 785 && m.getX() < 865 && m.getY() > 185 && m.getY() < 265) {
 			System.out.println("dart monkey");
+			Buying bd = new Buying(1);
 		}
 		if (m.getX() > 875 && m.getX() < 955 && m.getY() > 185 && m.getY() < 265) {
 			System.out.println("tack shooter");
+			Buying bts = new Buying(2);
 		}
 		if (m.getX() > 785 && m.getX() < 865 && m.getY() > 275 && m.getY() < 355) {
 			System.out.println("ice monkey");
+			Buying bi = new Buying(3);
 		}
 		if (m.getX() > 875 && m.getX() < 955 && m.getY() > 275 && m.getY() < 355) {
 			System.out.println("cannon");
+			Buying bcannon = new Buying(4);
 		}
 		if (m.getX() > 785 && m.getX() < 865 && m.getY() > 365 && m.getY() < 445) {
 			System.out.println("super monkey");
+			Buying bs = new Buying(5);
 		}
+		
+		
 		
 		if (m.getX() >= 915 && m.getX() <= 965 && m.getY() >= 700 + 25 && m.getY() <= 750 + 25) {
 			musicCount++;
@@ -466,13 +468,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		if (m.getX() >= 865 && m.getX() <= 915 && m.getY() >= 700 + 25 && m.getY() <= 750 + 25) {
 			soundCount++;
 			if (soundCount % 2 == 0) {
-				// sound . play here
+				//sweep2.play();
 			} else {
-				// sound . stop here
+				//sweep2.stop();
 			}
 		}
-		
-	}
 }
 	
 	public static void delay(int millisec) {
