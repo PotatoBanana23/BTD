@@ -171,11 +171,39 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		tempB = true; 
 		sMonkeyBullets.add(new Shooting(s.getX(), s.getY(), 2, 2)); 
 		sMonkeyBulletsB = true; 
+		
+		//adding balloons
 		testBloons.add(new RedBloon());
 		testBloons.add(new BlueBloon());
 		testBloons.add(new GreenBloon());
 		testBloons.add(new YellowBloon());
 		testBloons.add(new PinkBloon());
+		
+		//30 red balloons
+		int red = 0;
+		while (red < 100) {
+			Bloon newBalloon;
+			if (red < 20) {
+				newBalloon = new PinkBloon();
+			} else if (red < 40) {
+				newBalloon = new YellowBloon();
+			} else if (red < 60) {
+				newBalloon = new GreenBloon();
+			} else if (red < 80) {
+				newBalloon = new BlueBloon();
+			} else {
+				newBalloon = new RedBloon();
+			}
+			
+			testBloons.add(newBalloon);
+			while (newBalloon.getDelay() < 1.0) {
+				if (newBalloon.getDelay() > 1.0) {
+					red++;
+					break;
+				}
+			}
+		}
+		
 	}
 	
 
