@@ -193,23 +193,23 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		testBloons.add(new PinkBloon());
 		while (testBloons.size() > 0) {
 			
-//			for (int i = 0; i < dartMs.size(); i++) {
+			for (int i = 0; i < dartMs.size(); i++) {
 //				while (dartMs.get(i).getDelay() < 1.0) {
 //					if (dartMs.get(i).getDelay() > 1.0) {
-//						dartMonkeyCalculate(dartMs.get(i));
+						dartMonkeyCalculate(dartMs.get(i));
 //						dartMs.get(i).setDelay(0.5);
-//						break;
-//					}
+						break;
+					}
 //				}
-//
+
 //			}			
 			
-			for (int i = 0; i < superMs.size(); i++) {
+			for (int j = 0; j < superMs.size(); j++) {
 //				while (superMs.get(i).getDelay() < 1.0) {
 //					if (superMs.get(i).getDelay() > 1.0) {
-						superMonkeyCalculate(superMs.get(i));
+						superMonkeyCalculate(superMs.get(j));
 //						superMs.get(i).setDelay(0.5);
-//						break;
+						break;
 //					}
 //				}
 //
@@ -296,7 +296,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//BULLET TRACKING FOR SUPERMONKEY
 		double sMonkeyBulletSpeedX = 0;
 		double sMonkeyBulletSpeedY = 0;
-
+		
+		System.out.println("0th Check: " + s.getDelay()); 
+		
+		
 		// int k = 2;
 		int size = testBloons.size();
 		// while(size > 0) {
@@ -328,13 +331,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 						// adding bullet shooting towards bloon to list
 
 						if (testBloons.get(k).getBeenShot() == false) {
-							while (s.getDelay() < 1.0) {
+							System.out.println("1st Check: " + s.getDelay()); 
+							while (s.getDelay() < 10.0) {
+								//System.out.println("2nd Check: " + s.getDelay());
 								if (s.getDelay() > 1.0) {
+									System.out.println("3rd Check: " + s.getDelay());
 									sMonkeyBullets.add(new Shooting(s.getX(), s.getY(), sMonkeyBulletSpeedX, sMonkeyBulletSpeedY));
-//									s.setDelay(0.5);
-//									break;
+									//s.setDelay(0.5);
+									break;
 								}
 							}
+
 						}
 
 						// scanning for dart hitting bloon
