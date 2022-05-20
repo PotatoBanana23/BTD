@@ -93,7 +93,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			
 			for (int i = 0; i < bombs.size(); i++) {
 				bombs.get(i).paint(g);
-				if (bombs.get(i).getXSize() > 0.508) {
+				if (bombs.get(i).getXSize() > 0.505) {
 					bombs.remove(i);
 				}
 			}
@@ -145,6 +145,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		if (lives == 0) {
 			gameOver.paint(g);
 		}
+		
+		for (int i = 0 ; i < testBloons.size(); i++) {
+			if(testBloons.get(i).getImageName().equals("/imgs/poppedBloon.png")) {
+				testBloons.get(i).setBeenShot(true);
+				testBloons.remove(i); 
+				i--;
+			}
+		}
+		
+		
 	}
 	
 	public static void main(String[] arg) {
@@ -172,36 +182,64 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		sMonkeyBulletsB = true; 
 		
 		//adding balloons
-		testBloons.add(new RedBloon());
-		testBloons.add(new BlueBloon());
-		testBloons.add(new GreenBloon());
-		testBloons.add(new YellowBloon());
-		testBloons.add(new PinkBloon());
 		
 		//30 red balloons
 		int red = 0;
-		while (red < 100) {
+		while (red < 1000) {
 			Bloon newBalloon;
-			if (red < 20) {
-				newBalloon = new PinkBloon();
-			} else if (red < 40) {
-				newBalloon = new YellowBloon();
-			} else if (red < 60) {
-				newBalloon = new GreenBloon();
-			} else if (red < 80) {
-				newBalloon = new BlueBloon();
-			} else {
+			int randNumber = (int) (Math.random()*10) +1;
+			if (randNumber == 1) {
 				newBalloon = new RedBloon();
+			} else if (randNumber == 2) {
+				newBalloon = new BlueBloon();
+			} else if(randNumber <= 4) {
+				newBalloon = new GreenBloon();
+			} else if (randNumber <= 7) {
+				newBalloon = new YellowBloon();
+			} else {
+				newBalloon = new PinkBloon();
 			}
 			
 			testBloons.add(newBalloon);
+			System.out.println("added");
+			
 			while (newBalloon.getDelay() < 1.0) {
-				if (newBalloon.getDelay() > 1.0) {
-					red++;
+				if (newBalloon.getDelay() > 0.9) {
+					//System.out.println("breaked");
+				}
+				if (newBalloon.getImageName().equals("/imgs/poppedBloon.png")) {
 					break;
 				}
 			}
+			System.out.println("newBalloon" + red);
+			red++;
 		}
+		
+		System.out.println("wtf");
+		
+//		for (int i = 0; i < 30; i++) {
+//			Bloon newBalloon;
+//			int randNumber = (int) Math.random()*10 +1;
+//			if (randNumber == 1) {
+//				newBalloon = new RedBloon();
+//			} else if (randNumber == 2) {
+//				newBalloon = new BlueBloon();
+//			} else if(randNumber <= 4) {
+//				newBalloon = new GreenBloon();
+//			} else if (randNumber <= 7) {
+//				newBalloon = new YellowBloon();
+//			} else {
+//				newBalloon = new PinkBloon();
+//			}
+//			
+//			while (newBalloon.getDelay() < 1.0) {
+//				if (newBalloon.getDelay() > 0.9) {
+//					break;
+//				}
+//			}
+//			
+//			testBloons.add(newBalloon);
+//		}
 		
 	}
 	
@@ -219,7 +257,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		double tempSpeedY = 0; 
 		
 
-		if (Math.abs(testBloons.get(0).getX() - d.getX()) <= d.getR()
+		if (testBloons.size() > 0 && Math.abs(testBloons.get(0).getX() - d.getX()) <= d.getR()
 				&& Math.abs(testBloons.get(0).getY() - d.getY()) <= d.getR()) {
 			
 			//getting distance
@@ -256,6 +294,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 							if(testBloons.get(j).getColor().equals("popped")) {
 								testBloons.get(j).setBeenShot(true);
 								testBloons.remove(j); 
+								j--;
 							}
 							break;
 						}
@@ -288,6 +327,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 							if (Math.abs(tacks.get(i).getX() - testBloons.get(j).getX()) <= ts.getR() && Math.abs(tacks.get(i).getY() - testBloons.get(j).getY()) <= ts.getR() && !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
 								testBloons.get(j).changePicture("/imgs/poppedBloon.png");
 								money++; //will also edit to support multiple layer pops
+								if(testBloons.get(j).getColor().equals("popped")) {
+									testBloons.get(j).setBeenShot(true);
+									testBloons.remove(j); 
+									j--;
+								}
 								break;
 								// delay(25);
 								// long time1 = System.currentTimeMillis();
@@ -303,7 +347,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		double bombSpeedX = 0;
 		double bombSpeedY = 0; 
 		
-		if (Math.abs(testBloons.get(0).getX() - cannon.getX()) <= cannon.getR()
+		if (testBloons.size() > 0 && Math.abs(testBloons.get(0).getX() - cannon.getX()) <= cannon.getR()
 				&& Math.abs(testBloons.get(0).getY() - cannon.getY()) <= cannon.getR()) { 
 			
 			//getting distance
@@ -334,20 +378,24 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 							//testBloons.get(j).changePicture("/imgs/poppedBloon.png");
 							testBloons.get(j).pop();
 							//testBloons.get(j).setBeenShot(true);
-				
-							int index = bombs.size()-1;
-							int x = bombs.get(index).getX();
-							int y = bombs.get(index).getY();
-							bombs.remove(index);
-							CannonShooting temp = new CannonShooting(x-50, y-50, 0, 0, "/imgs/cannonExplosion.png");
-							bombs.add(index,temp);
-							bombs.get(index).setExploded();
 							
-							break;
+							if(testBloons.get(j).getColor().equals("popped")) {
+								testBloons.get(j).setBeenShot(true);
+								testBloons.remove(j); 
+							}
+				
 							
 						}
 						
+						
 					}
+					int index = bombs.size()-1;
+					int x = bombs.get(index).getX();
+					int y = bombs.get(index).getY();
+					bombs.remove(index);
+					CannonShooting temp = new CannonShooting(x-50, y-50, 0, 0, "/imgs/cannonExplosion.png");
+					bombs.add(index,temp);
+					bombs.get(index).setExploded();
 				}
 			}
 			
@@ -515,8 +563,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void mouseEntered(MouseEvent m) {
 		// TODO Auto-generated method stub
-		System.out.println("x: " + testBloons.get(0).getX());
-		System.out.println("y: " + testBloons.get(0).getY());
+		
+		if (testBloons.size() > 0) {
+			System.out.println("x: " + testBloons.get(0).getX());
+			System.out.println("y: " + testBloons.get(0).getY());
+		}
+		
 		
 		
 	}
