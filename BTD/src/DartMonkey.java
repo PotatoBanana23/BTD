@@ -10,11 +10,13 @@ public class DartMonkey {
 	private Image img; 	
 	private AffineTransform tx;
 	private int r = 100; 
+	private double delay;
 
 	public DartMonkey(int x, int y) {
 		img = getImage("/imgs/dartMonkey.png"); //load the image for Tree
 		this.x = x;
 		this.y = y;
+		delay = 0.5;
 
 		tx = AffineTransform.getTranslateInstance(x, y);
 		init(x, y); 				//initialize the location of the image
@@ -30,6 +32,7 @@ public class DartMonkey {
 		//these are the 2 lines of code needed draw an image on the screen
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(img, tx, null);
+		delay += 0.05;
 		update();
 
 	}
@@ -65,5 +68,13 @@ public class DartMonkey {
 	
 	public int getR() {
 		return r; 
+	}
+	
+	public double getDelay() {
+		return delay;
+	}
+	
+	public void setDelay(double delay) {
+		this.delay = delay; 
 	}
 }
