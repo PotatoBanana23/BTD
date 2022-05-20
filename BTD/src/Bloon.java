@@ -15,8 +15,9 @@ public class Bloon{
 	private String fileName; 
 	private boolean beenShot; 
 	private String color;
-	private int radius; 
 	private double delay;
+	private int radius; 
+
 
 	public Bloon(double speed, String fileName, String color) {
 		this.fileName = fileName;
@@ -25,9 +26,9 @@ public class Bloon{
 		x = 0;
 		y = 350;
 		this.speed = speed;
-		beenShot = false; 
-		radius = 75; 
+		beenShot = false;
 		delay = 0.5;
+		radius = 50; 
 
 		tx = AffineTransform.getTranslateInstance(x, y);
 		init(x, y); 				//initialize the location of the image
@@ -165,6 +166,8 @@ public class Bloon{
 		if (y <= 100 && y > -20 && x > 410-(speed+1) && x < 410+(speed+1)) {
 			y -= speed;
 		}
+		
+		delay += 0.05;
 
 		update();
 
@@ -195,14 +198,6 @@ public class Bloon{
 		return color;
 	}
 	
-	public int getRadius() {
-		return radius;
-	}
-	
-	public void setRadius(int radius) {
-		this.radius = radius; 
-	}
-	
 	public void setColor(String color) {
 		this.color = color;
 	}
@@ -210,6 +205,11 @@ public class Bloon{
 	public double getDelay() {
 		return delay;
 	}
+	
+	public int getRadius() {
+		return radius;
+	}
+	
 
 	public void setBeenShot(boolean beenShot) {
 		this.beenShot = beenShot;
@@ -241,5 +241,3 @@ public class Bloon{
 	
 
 }
-
-
