@@ -60,7 +60,18 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Money m = new Money(800, 85);
 	int lives = 100;
 	int money = 650;
+	
+	
 	int round = 0;
+	int counter = 0;
+	int clickX = 0;
+	int clickY = 0;
+	
+	Buying bd = new Buying(1, clickX, clickY);
+	Buying bts = new Buying(2, clickX, clickY);
+	Buying bi = new Buying(3, clickX, clickY);
+	Buying bcannon = new Buying(4, clickX, clickY);
+	Buying bs = new Buying(5, clickX, clickY);
 
 	
 	public void paint(Graphics g) {
@@ -144,6 +155,26 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		sr.paint(g);
 		if (lives == 0) {
 			gameOver.paint(g);
+		}
+		if (counter == 1) {
+			bd.locationUpdate(clickX, clickY);
+			bd.paint(g);
+		}
+		if (counter == 2) {
+			bts.locationUpdate(clickX, clickY);
+			bts.paint(g);
+		}
+		if (counter == 3) {
+			bi.locationUpdate(clickX, clickY);
+			bi.paint(g);
+		}
+		if (counter == 4) {
+			bcannon.locationUpdate(clickX, clickY);
+			bcannon.paint(g);
+		}
+		if (counter == 5) {
+			bs.locationUpdate(clickX, clickY);
+			bs.paint(g);
 		}
 	}
 	
@@ -460,30 +491,36 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		temp.add(new Shooting(d.getX(), d.getY(), dX, -1*dY)); 
 	*/
-
-
-		if (m.getX() > 785 && m.getX() < 865 && m.getY() > 185 && m.getY() < 265) {
-			System.out.println("dart monkey");
-			Buying bd = new Buying(1);
-		}
-		if (m.getX() > 875 && m.getX() < 955 && m.getY() > 185 && m.getY() < 265) {
-			System.out.println("tack shooter");
-			Buying bts = new Buying(2);
-		}
-		if (m.getX() > 785 && m.getX() < 865 && m.getY() > 275 && m.getY() < 355) {
-			System.out.println("ice monkey");
-			Buying bi = new Buying(3);
-		}
-		if (m.getX() > 875 && m.getX() < 955 && m.getY() > 275 && m.getY() < 355) {
-			System.out.println("cannon");
-			Buying bcannon = new Buying(4);
-		}
-		if (m.getX() > 785 && m.getX() < 865 && m.getY() > 365 && m.getY() < 445) {
-			System.out.println("super monkey");
-			Buying bs = new Buying(5);
+		if (counter == 0) {
+			if (m.getX() > 785 && m.getX() < 865 && m.getY() > 185 && m.getY() < 265) {
+				System.out.println("dart monkey");
+				counter = 1;
+			}
+			if (m.getX() > 875 && m.getX() < 955 && m.getY() > 185 && m.getY() < 265) {
+				System.out.println("tack shooter");
+				counter = 2;
+			}
+			if (m.getX() > 785 && m.getX() < 865 && m.getY() > 275 && m.getY() < 355) {
+				System.out.println("ice monkey");
+				counter = 3;
+			}
+			if (m.getX() > 875 && m.getX() < 955 && m.getY() > 275 && m.getY() < 355) {
+				System.out.println("cannon");
+				counter = 4;
+			}
+			if (m.getX() > 785 && m.getX() < 865 && m.getY() > 365 && m.getY() < 445) {
+				System.out.println("super monkey");
+				counter = 5;
+			}
 		}
 		
+		//so music thing modulate for click on and off
+		//get image to sticky to mouse when first click
+		//then put on board for second click
+		//take away cost from money
 		
+		clickX = m.getX();
+		clickY = m.getY();
 		
 		if (m.getX() >= 915 && m.getX() <= 965 && m.getY() >= 700 + 25 && m.getY() <= 750 + 25) {
 			musicCount++;
@@ -589,9 +626,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent arg0) {
+	public void mouseMoved(MouseEvent m) {
 		// TODO Auto-generated method stub
 		//temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
+
+
+		
 	}
 
 }
