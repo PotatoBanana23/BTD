@@ -575,7 +575,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			} else {
 				sweep.stop();
 			}
-		}
+		} 
 		if (m.getX() >= 865 && m.getX() <= 915 && m.getY() >= 700 + 25 && m.getY() <= 750 + 25) {
 			soundCount++;
 			if (soundCount % 2 == 0) {
