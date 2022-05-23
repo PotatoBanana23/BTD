@@ -67,6 +67,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Money m = new Money(800, 85);
 	int lives = 100;
 	int money = 650;
+	
+	
 	int round = 0;
 	int counter = 0;
 	int clickX = 0;
@@ -171,7 +173,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		if (lives == 0) {
 			gameOver.paint(g);
 		}
-		
+
 		if (counter == 1) {
 			bd.locationUpdate(clickX, clickY);
 			bd.paint(g);
@@ -535,8 +537,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 						}
 					}
 				}*/
-			 
-		// for detecting the monkeys you want to buy, will edit what it does later
+		
+	/*	double angle = Math.atan2(m.getY() - d.getY(), m.getX() - d.getX());
+		
+		double speed = 5;
+		double dX = speed * Math.cos(angle);
+		double dY = speed * Math.sin(angle);
+		
+		temp.add(new Shooting(d.getX(), d.getY(), dX, -1*dY)); 
+	*/
 		if (counter == 0) {
 			if (m.getX() > 785 && m.getX() < 865 && m.getY() > 185 && m.getY() < 265) {
 				System.out.println("dart monkey");
@@ -559,12 +568,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				counter = 5;
 			}
 		}
-
+		
 		//so music thing modulate for click on and off
 		//get image to sticky to mouse when first click
 		//then put on board for second click
 		//take away cost from money
-
+		
 		clickX = m.getX();
 		clickY = m.getY();
 		
@@ -586,7 +595,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		}
 		
 	}
-//}
 	
 	public static void delay(int millisec) {
 		long time1 = System.currentTimeMillis(); 
@@ -675,9 +683,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent arg0) {
+	public void mouseMoved(MouseEvent m) {
 		// TODO Auto-generated method stub
 		//temp.add(new Shooting(d.getX(), d.getY(), 2, 2)); 
+
+
+		
 	}
 
 }

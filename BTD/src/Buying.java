@@ -39,14 +39,14 @@ public class Buying{
 		tx = AffineTransform.getTranslateInstance(x, y);
 		init(x, y);
 	}
-
-		public int getID() {
-			return val;
+	
+	public int getID() {
+		return val;
 	}
-
-		public void locationUpdate(int x, int y) {
-			this.x = x;
-			this.y = y;
+	
+	public void locationUpdate(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 	
 	public void changePicture(String newFileName) {
@@ -68,24 +68,32 @@ public class Buying{
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(img, tx, null);
 		update();
-
+		if (val == 2) {
+			tackUpdate();
+		}
+		if (val == 3) {
+			iceUpdate();
+		}
+		if (val == 5) {
+			superUpdate();
+		}
 	}
 	
 	private void update() {
 		tx.setToTranslation(x, y);
 		tx.scale(1, 1);
 	}
-
+	
 	private void tackUpdate() {
 		tx.setToTranslation(x, y);
 		tx.scale(0.75, 0.75);
 	}
-
+	
 	private void iceUpdate() {
 		tx.setToTranslation(x, y);
 		tx.scale(0.7, 0.7);
 	}
-
+	
 	private void superUpdate() {
 		tx.setToTranslation(x, y);
 		tx.scale(0.14, 0.14);
