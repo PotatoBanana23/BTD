@@ -36,7 +36,7 @@ public class TackShooter {
 	
 	private void update() {
 		tx.setToTranslation(x, y);
-		tx.scale(.75, .75);
+		tx.scale(0.75, 0.75);
 	}
 	
 	private void init(double a, double b) {

@@ -11,28 +11,56 @@ public class Buying{
 	private int x, y;
 	private Image img; 	
 	private AffineTransform tx;
+	int val = 0;
 
-	public Buying(int x) {
-		if (x == 1) {
-			
+	public Buying(int num, int x, int y) {
+		this.x = x;
+		this.y = y;
+		if (num == 1) {
+			img = getImage("/imgs/dartMonkey.png");
+			val = 1;
 		}
-		if (x == 2) {
-			
+		if (num == 2) {
+			img = getImage("/imgs/tackShooter.png");
+			val = 2;
 		}
-		if (x == 3) {
-			
+		if (num == 3) {
+			img = getImage("/imgs/iceMonkey.png");
+			val = 3;
 		}
-		if (x == 4) {
-			
+		if (num == 4) {
+			img = getImage("/imgs/cannon.png");
+			val = 4;
 		}
-		if (x == 5) {
-			
+		if (num == 5) {
+			img = getImage("/imgs/superMonkey.png");
+			val = 5;
 		}
+		tx = AffineTransform.getTranslateInstance(x, y);
+		init(x, y);
+	}
+
+		public int getID() {
+			return val;
+	}
+
+		public void locationUpdate(int x, int y) {
+			this.x = x;
+			this.y = y;
 	}
 	
 	public void changePicture(String newFileName) {
 		img = getImage(newFileName);
 		init(x, y);
+		if (val == 2) {
+			tackUpdate();
+		}
+		if (val == 3) {
+			iceUpdate();
+		}
+		if (val == 5) {
+			superUpdate();
+		}
 	}
 	
 	public void paint(Graphics g) {
@@ -45,7 +73,22 @@ public class Buying{
 	
 	private void update() {
 		tx.setToTranslation(x, y);
-		tx.scale(0.01, 0.01);
+		tx.scale(1, 1);
+	}
+
+	private void tackUpdate() {
+		tx.setToTranslation(x, y);
+		tx.scale(0.75, 0.75);
+	}
+
+	private void iceUpdate() {
+		tx.setToTranslation(x, y);
+		tx.scale(0.7, 0.7);
+	}
+
+	private void superUpdate() {
+		tx.setToTranslation(x, y);
+		tx.scale(0.14, 0.14);
 	}
 	
 	private void init(double a, double b) {
