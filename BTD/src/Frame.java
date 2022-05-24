@@ -23,9 +23,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	//objects and variables for towers
 	Map map = new Map(0, 0);
-	//DartMonkey d = new DartMonkey(50, 400);
-	//SuperMonkey s = new SuperMonkey(500, 510); 
-	//DartMonkey d2 = new DartMonkey(100, 100);
 	TackShooter ts = new TackShooter(120, 590);
 	IceMonkey i = new IceMonkey(575, 590);
 	Cannon cannon = new Cannon(200, 300);
@@ -115,12 +112,35 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 			for (int i = 0; i < testBloons.size(); i++) {
 				(testBloons.get(i)).paint(g);
+				if (testBloons.get(i).getY() < -40 && lives > 0) {
+					if (testBloons.get(i).getImageName() == "/imgs/pinkBloon.png") {
+						testBloons.remove(i);
+						i--;
+						lives -= 5;
+					} else if (testBloons.get(i).getImageName() == "/imgs/yellowBloon.png") {
+						testBloons.remove(i);
+						i--;
+						lives -= 4;
+					} else if (testBloons.get(i).getImageName() == "/imgs/greenBloon.png") {
+						testBloons.remove(i);
+						i--;
+						lives -= 3;
+					} else if (testBloons.get(i).getImageName() == "/imgs/blueBloon.png") {
+						testBloons.remove(i);
+						i--;
+						lives -= 2;
+					} else {
+						testBloons.remove(i);
+						i--;
+						lives--;
+					}
+				}
 			}
 			
 			
 			for (int i = 0; i < bombs.size(); i++) {
 				bombs.get(i).paint(g);
-				if (bombs.get(i).getXSize() > 0.508) {
+				if (bombs.get(i).getXSize() > 0.505) {
 					bombs.remove(i);
 				}
 			}
@@ -229,27 +249,34 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		//30 red balloons
 		int red = 0;
-		while (red < 100) {
+		while (red < 1000) {
 			Bloon newBalloon;
-			if (red < 20) {
-				newBalloon = new PinkBloon();
-			} else if (red < 40) {
-				newBalloon = new YellowBloon();
-			} else if (red < 60) {
-				newBalloon = new GreenBloon();
-			} else if (red < 80) {
-				newBalloon = new BlueBloon();
-			} else {
+			int randNumber = (int) (Math.random()*10) +1;
+			if (randNumber == 1) {
 				newBalloon = new RedBloon();
+			} else if (randNumber == 2) {
+				newBalloon = new BlueBloon();
+			} else if(randNumber <= 4) {
+				newBalloon = new GreenBloon();
+			} else if (randNumber <= 7) {
+				newBalloon = new YellowBloon();
+			} else {
+				newBalloon = new PinkBloon();
 			}
 			
 			testBloons.add(newBalloon);
+			System.out.println("added");
+			
 			while (newBalloon.getDelay() < 1.0) {
-				if (newBalloon.getDelay() > 1.0) {
-					red++;
+				if (newBalloon.getDelay() > 0.9) {
+					//System.out.println("breaked");
+				}
+				if (newBalloon.getImageName().equals("/imgs/poppedBloon.png")) {
 					break;
 				}
 			}
+			System.out.println("newBalloon" + red);
+			red++;
 		}
 		
 	
@@ -505,25 +532,24 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 							//testBloons.get(j).changePicture("/imgs/poppedBloon.png");
 							testBloons.get(j).pop();
 							//testBloons.get(j).setBeenShot(true);
-				
-							int index = bombs.size()-1;
-							int x = bombs.get(index).getX();
-							int y = bombs.get(index).getY();
-							bombs.remove(index);
-							CannonShooting temp = new CannonShooting(x-50, y-50, 0, 0, "/imgs/cannonExplosion.png");
-							bombs.add(index,temp);
-							bombs.get(index).setExploded();
 							
-							/*if(testBloons.get(j).getColor().equals("popped")) {
+							if(testBloons.get(j).getColor().equals("popped")) {
 								testBloons.get(j).setBeenShot(true);
 								testBloons.remove(j); 
-							}*/
-							
-							break;
+							}
+				
 							
 						}
 						
+						
 					}
+					int index = bombs.size()-1;
+					int x = bombs.get(index).getX();
+					int y = bombs.get(index).getY();
+					bombs.remove(index);
+					CannonShooting temp = new CannonShooting(x-50, y-50, 0, 0, "/imgs/cannonExplosion.png");
+					bombs.add(index,temp);
+					bombs.get(index).setExploded();
 				}
 			}
 			
