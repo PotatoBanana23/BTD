@@ -89,6 +89,29 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 			for (int i = 0; i < testBloons.size(); i++) {
 				(testBloons.get(i)).paint(g);
+				if (testBloons.get(i).getY() < -40 && lives > 0) {
+					if (testBloons.get(i).getImageName() == "/imgs/pinkBloon.png") {
+						testBloons.remove(i);
+						i--;
+						lives -= 5;
+					} else if (testBloons.get(i).getImageName() == "/imgs/yellowBloon.png") {
+						testBloons.remove(i);
+						i--;
+						lives -= 4;
+					} else if (testBloons.get(i).getImageName() == "/imgs/greenBloon.png") {
+						testBloons.remove(i);
+						i--;
+						lives -= 3;
+					} else if (testBloons.get(i).getImageName() == "/imgs/blueBloon.png") {
+						testBloons.remove(i);
+						i--;
+						lives -= 2;
+					} else {
+						testBloons.remove(i);
+						i--;
+						lives--;
+					}
+				}
 			}
 			
 			for (int i = 0; i < bombs.size(); i++) {
@@ -142,8 +165,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		ir.paint(g);
 		cannonr.paint(g);
 		sr.paint(g);
-		if (lives == 0) {
+		if (lives <= 0) {
 			gameOver.paint(g);
+			lives = 0;
 		}
 		
 		for (int i = 0 ; i < testBloons.size(); i++) {
@@ -171,14 +195,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.setLayout(new GridLayout(1,2));
 		f.addMouseListener(this);
 		f.addKeyListener(this);
-		Timer t = new Timer(10, this);
+		Timer t = new Timer(5, this);
 		t.start();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
 		sweep.play();
-		temp.add(new Shooting(d.getX(), d.getY(), 2, 2));
+		//temp.add(new Shooting(d.getX(), d.getY(), 2, 2));
 		tempB = true; 
-		sMonkeyBullets.add(new Shooting(s.getX(), s.getY(), 2, 2)); 
+		//sMonkeyBullets.add(new Shooting(s.getX(), s.getY(), 2, 2)); 
 		sMonkeyBulletsB = true; 
 		
 		//adding balloons

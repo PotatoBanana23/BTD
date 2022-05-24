@@ -161,9 +161,11 @@ public class Bloon{
 		if (x <= 690 && x > 410 && y > 90-(speed+1) && y < 90+(speed+1)) {
 			x -= speed;
 		}
-		if (y <= 100 && y > -20 && x > 410-(speed+1) && x < 410+(speed+1)) {
+		if (y <= 100 && y > -50 && x > 410-(speed+1) && x < 410+(speed+1)) {
 			y -= speed;
 		}
+		
+		
 		
 		delay += 0.05;
 
@@ -177,6 +179,10 @@ public class Bloon{
 	
 	public int getY() {
 		return y;
+	}
+	
+	public void setY(int y) {
+		this.y = y;
 	}
 	//setters for speed
 	public void setSpeed(double speed) {
