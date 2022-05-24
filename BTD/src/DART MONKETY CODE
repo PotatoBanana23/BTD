@@ -1,0 +1,66 @@
+		/** START OF DART MONKEY SHOOTING **/
+		
+		double dMonkeyBulletSpeedX = 0;
+		double dMonkeyBulletSpeedY = 0;
+		
+		for (int j = 0; j < dartMs.size(); j++) {
+			int dMBullets = 0; 
+			for (int k = 0; k < testBloons.size(); k++) {
+
+				DartMonkey d = dartMs.get(j);
+
+				int xDist = Math.abs(testBloons.get(k).getX() - d.getX());
+				int yDist = Math.abs(testBloons.get(k).getY() - d.getY());
+				int dist = (int) Math.sqrt((xDist * xDist) + (yDist * yDist));
+				
+			
+					if (dist <= d.getR()) {
+						// getting distance
+						double dX = testBloons.get(k).getX() - d.getX();
+						double dY = testBloons.get(k).getY() - d.getY();
+
+						// finding length w/ Pythagorean Theorem
+						double length = (int) (Math.sqrt((dX * dX) + (dY * dY)));
+
+						// scaling distance for speed calculation
+						dX /= length;
+						dY /= length;
+						dMonkeyBulletSpeedX = dX * 10;
+						dMonkeyBulletSpeedY = dY * 10;
+
+						// adding bullet shooting towards bloon to list
+
+						if (testBloons.get(k).getBeenShot() == false && dMBullets < 1) {
+									temp.add(new Shooting(d.getX(), d.getY(), dMonkeyBulletSpeedX, dMonkeyBulletSpeedY));
+									dMBullets++;
+								}
+
+						// scanning for dart hitting bloon
+						if (temp.size() > 0) {
+							for (int i = 0; i < temp.size(); i++) {
+								for (int p = 0; p < testBloons.size(); p++) {
+									int xDif = temp.get(i).getX() - testBloons.get(p).getX();
+									int yDif = temp.get(i).getY() - testBloons.get(p).getY(); 
+									dist = (int) Math.sqrt((xDif * xDif) + (yDif * yDif)); 
+									System.out.println("DIST OF BLOON BULLET: " + dist); 
+									if (dist <= testBloons.get(j).getRadius()
+											&& !(testBloons.get(p).getImageName().equals("/imgs/poppedBloon.png"))) {
+										money++;
+										testBloons.get(p).pop();
+										if (testBloons.get(p).getColor().equals("popped")) {
+											testBloons.get(p).setBeenShot(true);
+											testBloons.remove(p);
+										}
+										break;
+									}
+								}
+							}
+						}
+						
+					}
+				}
+					break; 
+			}
+		
+
+		/** END OF DART MONKEY SHOOTING **/
