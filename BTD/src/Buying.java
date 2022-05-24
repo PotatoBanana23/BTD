@@ -67,15 +67,14 @@ public class Buying{
 		//these are the 2 lines of code needed draw an image on the screen
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(img, tx, null);
-		update();
 		if (val == 2) {
 			tackUpdate();
-		}
-		if (val == 3) {
+		} else if (val == 3) {
 			iceUpdate();
-		}
-		if (val == 5) {
+		} else if (val == 5) {
 			superUpdate();
+		} else {
+			update();
 		}
 	}
 	

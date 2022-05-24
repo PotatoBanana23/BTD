@@ -27,7 +27,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	//SuperMonkey s = new SuperMonkey(500, 510); 
 	//DartMonkey d2 = new DartMonkey(100, 100);
 	TackShooter ts = new TackShooter(120, 590);
-	IceMonkey i = new IceMonkey(575, 590);
 	Cannon cannon = new Cannon(200, 300);
 	ArrayList<Shooting> temp = new ArrayList<Shooting>();
 	ArrayList<Shooting> sMonkeyBullets = new ArrayList<Shooting>();
@@ -45,7 +44,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	// DartMonkey, TackShooter, IceMonkey, Cannon, SuperMonkey
 	//Range dr = new Range(true, false, false, false, false, d.getX(), d.getY());
 	Range tsr = new Range(false, true, false, false, false, ts.getX(), ts.getY());
-	Range ir = new Range(false, false, true, false, false, i.getX(), i.getY());
 	Range cannonr = new Range(false, false, false, true, false, cannon.getX(), cannon.getY());
 	//Range sr = new Range(false, false, false, false, true, s.getX(), s.getY()); 
 	Music sweep = new Music("btdTheme.wav", true);
@@ -53,16 +51,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	//ARRAYLIST FOR MONKEY'S
 	ArrayList<DartMonkey> dartMs = new ArrayList<DartMonkey>(); 
+	ArrayList<TackShooter> tackS = new ArrayList<TackShooter>();
+	ArrayList<Cannon> cannonS = new ArrayList<Cannon>(); 
 	ArrayList<SuperMonkey> superMs = new ArrayList<SuperMonkey>(); 
 	
 
 
 	//shop and lives and money
 	DartMonkey dShop = new DartMonkey(785, 160);
-	TackShooter tsShop = new TackShooter(878, 163);
-	IceMonkey iShop = new IceMonkey(788, 245);
-	Cannon cShop = new Cannon(875, 250);
-	SuperMonkey sShop = new SuperMonkey(785, 340);
+	TackShooter tsShop = new TackShooter(788, 253);
+	Cannon cShop = new Cannon(784, 340);
+	SuperMonkey sShop = new SuperMonkey(785, 430);
 	Lives l = new Lives(800, 45);
 	Money m = new Money(800, 85);
 	int lives = 100;
@@ -70,15 +69,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	
 	int round = 0;
-	int counter = 0;
+	int shopCounter = 0;
 	int clickX = 0;
 	int clickY = 0;
-
-	Buying bd = new Buying(1, clickX, clickY);
-	Buying bts = new Buying(2, clickX, clickY);
-	Buying bi = new Buying(3, clickX, clickY);
-	Buying bcannon = new Buying(4, clickX, clickY);
-	Buying bs = new Buying(5, clickX, clickY);
 
 	
 	public void paint(Graphics g) {
@@ -87,8 +80,14 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		dartMs.add(new DartMonkey(50, 400));
 		superMs.add(new SuperMonkey(500, 510));
 		
-		for(int i = 0; i < superMs.size(); i++) {
+		for(int i = 0; i < dartMs.size(); i++) {
 			dartMs.get(i).paint(g);
+		} 
+		for(int i = 0; i < tackS.size(); i++) {
+			tackS.get(i).paint(g);
+		}
+		for(int i = 0; i < cannonS.size(); i++) {
+			cannonS.get(i).paint(g);
 		} 
 		for(int i = 0; i < superMs.size(); i++) {
 			superMs.get(i).paint(g);
@@ -145,13 +144,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		g.drawString(":   " + money, 825, 105);
 		g.setColor(Color.black);
 		g.drawRect(785, 160, 80, 80);
-		g.drawRect(875, 160, 80, 80);
 		g.drawRect(785, 250, 80, 80);
-		g.drawRect(875, 250, 80, 80);
 		g.drawRect(785, 340, 80, 80);
+		g.drawRect(785, 430, 80, 80);
 		dShop.paint(g);
 		tsShop.paint(g);
-		iShop.paint(g);
 		cShop.paint(g);
 		sShop.paint(g);
 		if (musicCount % 2 == 0) {
@@ -166,7 +163,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		}
 		//dr.paint(g);
 		tsr.paint(g);
-		ir.paint(g);
 		cannonr.paint(g);
 		//sr.paint(g);
 		
@@ -174,26 +170,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			gameOver.paint(g);
 		}
 
-		if (counter == 1) {
-			bd.locationUpdate(clickX, clickY);
-			bd.paint(g);
-		}
-		if (counter == 2) {
-			bts.locationUpdate(clickX, clickY);
-			bts.paint(g);
-		}
-		if (counter == 3) {
-			bi.locationUpdate(clickX, clickY);
-			bi.paint(g);
-		}
-		if (counter == 4) {
-			bcannon.locationUpdate(clickX, clickY);
-			bcannon.paint(g);
-		}
-		if (counter == 5) {
-			bs.locationUpdate(clickX, clickY);
-			bs.paint(g);
-		}
 		
 	}
 	
@@ -433,6 +409,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void mouseClicked(MouseEvent m) {
 		// TODO Auto-generated method stub
+		
+		clickX = m.getX();
+		clickY = m.getY();
 			
 		//start tack shooter shooting
 		for(int k = 0; k < testBloons.size(); k++) {
@@ -546,36 +525,56 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		temp.add(new Shooting(d.getX(), d.getY(), dX, -1*dY)); 
 	*/
-		if (counter == 0) {
+		if (shopCounter == 1 && m.getX() < 775) {
+			dartMs.add(new DartMonkey(m.getX(), m.getY()));
+			money -= 1000;
+			shopCounter = 0;
+		}
+		if (shopCounter == 2 && m.getX() < 775) {
+			tackS.add(new TackShooter(m.getX(), m.getY()));
+			money -= 2000;
+			shopCounter = 0;
+		}
+		if (shopCounter == 4 && m.getX() < 775) {
+			cannonS.add(new Cannon(m.getX(), m.getY()));
+			money -= 4000;
+			shopCounter = 0;
+		}
+		if (shopCounter == 5 && m.getX() < 775) {
+			superMs.add(new SuperMonkey(m.getX(), m.getY()));
+			money -= 10000;
+			shopCounter = 0;
+		}
+		
+		if (shopCounter == 0) {
 			if (m.getX() > 785 && m.getX() < 865 && m.getY() > 185 && m.getY() < 265) {
 				System.out.println("dart monkey");
-				counter = 1;
-			}
-			if (m.getX() > 875 && m.getX() < 955 && m.getY() > 185 && m.getY() < 265) {
-				System.out.println("tack shooter");
-				counter = 2;
+				shopCounter = 1;
 			}
 			if (m.getX() > 785 && m.getX() < 865 && m.getY() > 275 && m.getY() < 355) {
-				System.out.println("ice monkey");
-				counter = 3;
-			}
-			if (m.getX() > 875 && m.getX() < 955 && m.getY() > 275 && m.getY() < 355) {
-				System.out.println("cannon");
-				counter = 4;
+				System.out.println("tack shooter");
+				shopCounter = 2;
 			}
 			if (m.getX() > 785 && m.getX() < 865 && m.getY() > 365 && m.getY() < 445) {
+				System.out.println("cannon");
+				shopCounter = 4;
+			}
+			if (m.getX() > 785 && m.getX() < 865 && m.getY() > 455 && m.getY() < 535) {
 				System.out.println("super monkey");
-				counter = 5;
+				shopCounter = 5;
 			}
 		}
+			
+			
+		
+		
+		
 		
 		//so music thing modulate for click on and off
 		//get image to sticky to mouse when first click
 		//then put on board for second click
 		//take away cost from money
-		
-		clickX = m.getX();
-		clickY = m.getY();
+
 		
 		if (m.getX() >= 915 && m.getX() <= 965 && m.getY() >= 700 + 25 && m.getY() <= 750 + 25) {
 			musicCount++;
@@ -593,6 +592,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				//sweep2.stop();
 			}
 		}
+		
+	}
+	
+	public void buy() {
 		
 	}
 	
