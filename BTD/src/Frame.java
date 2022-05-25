@@ -77,8 +77,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		map.paint(g);
-		dartMs.add(new DartMonkey(50, 400));
-		superMs.add(new SuperMonkey(500, 510));
+		
 		
 		for(int i = 0; i < dartMs.size(); i++) {
 			dartMs.get(i).paint(g);
@@ -202,6 +201,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		testBloons.add(new GreenBloon());
 		testBloons.add(new YellowBloon());
 		testBloons.add(new PinkBloon());
+		dartMs.add(new DartMonkey(50, 400));
+		superMs.add(new SuperMonkey(500, 510));
 		
 		//30 red balloons
 		int red = 0;
