@@ -166,7 +166,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		cannonr.paint(g);
 		//sr.paint(g);
 		
-		if (lives == 0) {
+		if (lives <= 0) {
 			gameOver.paint(g);
 		}
 
@@ -433,6 +433,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 							if (dist <= testBloons.get(j).getRadius() && !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
 								//testBloons.get(j).changePicture("/imgs/poppedBloon.png");
 								money++; //will also edit to support multiple layer pops
+								sweep2.play();
 								testBloons.get(j).pop();
 								if(testBloons.get(j).getColor().equals("popped")) {
 									testBloons.get(j).setBeenShot(true);
@@ -525,26 +526,75 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		temp.add(new Shooting(d.getX(), d.getY(), dX, -1*dY)); 
 	*/
-		if (shopCounter == 1 && m.getX() < 775) {
+		//do not put on track
+		
+		if (shopCounter == 1 && m.getX() < 775 && money >= 1000) {
 			dartMs.add(new DartMonkey(m.getX(), m.getY()));
 			money -= 1000;
 			shopCounter = 0;
 		}
-		if (shopCounter == 2 && m.getX() < 775) {
+		if (shopCounter == 2 && m.getX() < 775 && money >= 1000) {
 			tackS.add(new TackShooter(m.getX(), m.getY()));
 			money -= 2000;
 			shopCounter = 0;
 		}
-		if (shopCounter == 4 && m.getX() < 775) {
+		if (shopCounter == 4 && m.getX() < 775 && money >= 1000) {
 			cannonS.add(new Cannon(m.getX(), m.getY()));
 			money -= 4000;
 			shopCounter = 0;
 		}
-		if (shopCounter == 5 && m.getX() < 775) {
+		if (shopCounter == 5 && m.getX() < 775 && money >= 1000) {
 			superMs.add(new SuperMonkey(m.getX(), m.getY()));
 			money -= 10000;
 			shopCounter = 0;
 		}
+		
+		/*if (x < 140 && x >= 0 && y == 350) {
+			x += speed;
+		}
+		
+		if (y > 170 && y <= 350 && x > 140-(speed+1) && x < 140+speed+1) {
+			y -= speed;
+		}
+		
+		if (x < 330 && x >= 130 && y > 170-(speed+1) && y < 170+(speed+1)) {
+			x += speed;
+		}
+		
+		if (y < 550 && y >= 160 && x > 330-(speed+1) && x < 330+(speed+1)) {
+			y += speed;
+		}
+		
+		if (x > 90 && x <= 340 && y > 550-(speed+1) && y < 550+(speed+1)) {
+			x -= speed;
+		}
+		if (y < 690 && y >= 520 && x > 90-(speed+1) && x < 90+(speed+1)) {
+			y += speed;
+		}
+		if (x < 670 && x >= 80 && y > 690-(speed+1) && y < 690+(speed+1)) {
+			x += speed;
+		}
+		if (y > 480 && y <= 700 && x > 670-(speed+1) && x < 670+(speed+1)) {
+			y -= speed;
+		}
+		if (x <= 680 && x > 490 && y > 480-(speed+1) && y < 480+(speed+1)) {
+			x -= speed;
+		}
+		if (y <= 500 && y > 290 && x > 490-(speed+1) && x < 490+(speed+1)) {
+			y -= speed;
+		}
+		if (x < 680 && x >= 480 && y > 290-(speed+1) && y < 290+(speed+1)) {
+			x += speed;
+		}
+		if (y <= 300 && y > 90 && x > 680-(speed+1) && x < 680+(speed+1)) {
+			y -= speed;
+		}
+		if (x <= 690 && x > 410 && y > 90-(speed+1) && y < 90+(speed+1)) {
+			x -= speed;
+		}
+		if (y <= 100 && y > -20 && x > 410-(speed+1) && x < 410+(speed+1)) {
+			y -= speed;
+		}*/
 		
 		if (shopCounter == 0) {
 			if (m.getX() > 785 && m.getX() < 865 && m.getY() > 185 && m.getY() < 265) {
