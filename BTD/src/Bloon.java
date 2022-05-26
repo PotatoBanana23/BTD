@@ -16,7 +16,10 @@ public class Bloon{
 	private boolean beenShot; 
 	private String color;
 	private double delay;
+
 	private int radius;
+
+
 
 	public Bloon(double speed, String fileName, String color) {
 		this.fileName = fileName;
@@ -27,7 +30,9 @@ public class Bloon{
 		this.speed = speed;
 		beenShot = false;
 		delay = 0.5;
+
 		radius = 50; 
+
 
 		tx = AffineTransform.getTranslateInstance(x, y);
 		init(x, y); 				//initialize the location of the image
@@ -50,14 +55,14 @@ public class Bloon{
 			setColor("red");
 			speed = 1;
 			fileName = "/imgs/redBloon.png";
-			setSpeed(speed);
+			setSpeed(1);
 			changePicture(fileName);
 			
 		} else if (color.equals("green")) {
 			setColor("blue");
 			speed = 2;
 			fileName = "/imgs/blueBloon.png";
-			setSpeed(speed);
+			setSpeed(2);
 			changePicture(fileName);
 
 			
@@ -65,13 +70,13 @@ public class Bloon{
 			speed = 3;
 			fileName = "/imgs/greenBloon.png";
 			setColor("green");
-			setSpeed(speed);
+			setSpeed(3);
 			changePicture(fileName);
 			
 		} else if (color.equals("pink")) {
 			speed = 4;
 			fileName = "/imgs/yellowBloon.png";
-			setSpeed(speed);
+			setSpeed(4);
 			changePicture(fileName);
 			setColor("yellow");
 			
@@ -96,27 +101,9 @@ public class Bloon{
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(img, tx, null);
 		
-		//bloon speed and fileName
-//		if (color.equals("red")) {
-//			fileName = "/imgs/redBloon.png";
-//			changePicture(fileName);
-//		} else if (color.equals("blue")) {
-//			fileName = "/imgs/blueBloon.png";
-//			changePicture(fileName);
-//		} else if (color.equals("green")) {
-//			fileName = "/imgs/greenBloon.png";
-//			changePicture(fileName);
-//		} else if (color.equals("yellow")) {
-//			fileName = "/imgs/yellowBloon.png";
-//			changePicture(fileName);
-//		} else if (color.equals("pink")) {
-//			fileName = "/imgs/pinkBloon.png";
-//			changePicture(fileName);
-//		} else if (color.equals("popped")) {
-//			setSpeed(0);
-//			fileName = "/imgs/poppedBloon.png";
-//			changePicture(fileName);
-//		}
+		if (fileName.equals("/imgs/redBloon.png")) {
+			speed = 1;
+		}
 		
 		//bloon movement
 		if (x < 140 && x >= 0 && y == 350) {
@@ -162,9 +149,11 @@ public class Bloon{
 		if (x <= 690 && x > 410 && y > 90-(speed+1) && y < 90+(speed+1)) {
 			x -= speed;
 		}
-		if (y <= 100 && y > -20 && x > 410-(speed+1) && x < 410+(speed+1)) {
+		if (y <= 100 && y > -50 && x > 410-(speed+1) && x < 410+(speed+1)) {
 			y -= speed;
 		}
+		
+		
 		
 		delay += 0.05;
 
@@ -179,6 +168,14 @@ public class Bloon{
 	public int getY() {
 		return y;
 	}
+	
+	public double getSpeed() {
+		return speed;
+	}
+	
+	public void setY(int y) {
+		this.y = y;
+	}
 	//setters for speed
 	public void setSpeed(double speed) {
 		this.speed = speed;
@@ -186,6 +183,10 @@ public class Bloon{
 	
 	public String getImageName() {
 		return fileName; 
+	}
+	
+	public int getRadius() {
+		return radius;
 	}
 	
 	public boolean getBeenShot() {
@@ -197,9 +198,7 @@ public class Bloon{
 		return color;
 	}
 	
-	public int getRadius() {
-		return radius;
-	}
+
 	
 	public void setColor(String color) {
 		this.color = color;

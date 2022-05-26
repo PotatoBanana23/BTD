@@ -15,6 +15,7 @@ public class TackShooting {
 	private AffineTransform tx;
 	private int val;
 	private int r = 100; 
+	private boolean tackOnScreen;
 
 	public TackShooting(int x, int y, double vX, double vY, int val) {
 		//val is for the tack number starting from the one going bottom right bc that is unchanged image
@@ -24,6 +25,7 @@ public class TackShooting {
 		this.x = x;
 		this.y = y;
 		double equalizer = (int) (Math.sqrt(vX*vX + vY*vY));
+		tackOnScreen = true;
 		if (val == 1) {
 			this.vX = vX;
 			this.vY = vY; 
@@ -96,6 +98,8 @@ public class TackShooting {
 		y += vY; 
 		if ((int) (Math.sqrt((oldX - x)*(oldX - x) + (oldY - y)*(oldY - y))) >= r) {
 			img = null;
+			tackOnScreen = false;
+			
 		}
 		update();
 
@@ -132,5 +136,8 @@ public class TackShooting {
 	
 	public int getR() {
 		return r; 
+	}
+	public boolean getTackOnScreen() {
+		return tackOnScreen;
 	}
 }
