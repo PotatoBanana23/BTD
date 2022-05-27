@@ -73,6 +73,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	int clickX = 0;
 	int clickY = 0;
 	
+	Font fontScore3 = new Font("Helvetica", Font.BOLD, 17);
 	Font fontScore2 = new Font("Helvetica", Font.BOLD, 21);
 	Font fontScore = new Font("Helvetica", Font.BOLD, 50);
 	
@@ -187,6 +188,23 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		g.drawRect(785, 250, 80, 80);
 		g.drawRect(785, 340, 80, 80);
 		g.drawRect(785, 430, 80, 80);
+		g.setFont(fontScore3);
+		g.setColor(Color.white);
+		g.drawString("Dart", 870, 180);
+		g.drawString("Monkey", 870, 200);
+		g.drawString("Cost: 500", 870, 220);
+		g.drawString("Range: 100", 870, 240);
+		g.drawString("Tack", 870, 270);
+		g.drawString("Shooter", 870, 290);
+		g.drawString("Cost: 1000", 870, 310);
+		g.drawString("Range: 100", 870, 330);
+		g.drawString("Cannon", 870, 360);
+		g.drawString("Cost: 2000", 870, 380);
+		g.drawString("Range: 100", 870, 400);
+		g.drawString("Super", 870, 450);
+		g.drawString("Monkey", 870, 470);
+		g.drawString("Cost: 5000", 870, 490);
+		g.drawString("Range: 300", 870, 510);
 		dShop.paint(g);
 		tsShop.paint(g);
 
@@ -217,7 +235,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			g.drawString("Try Again?", 390, 450);
 			g.setColor(lightBrown);
 			g.fillRect(565, 260, 65, 40);
-			g.setColor(Color.white);
 			g.drawString(round + "", 565, 300);
 		}
 
