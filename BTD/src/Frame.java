@@ -207,9 +207,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		g.drawString("Range: 300", 870, 510);
 		dShop.paint(g);
 		tsShop.paint(g);
-
 		cShop.paint(g);
-
 		sShop.paint(g);
 		if (musicCount % 2 == 0) {
 			musicOn.paint(g);
@@ -235,6 +233,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			g.drawString("Try Again?", 390, 450);
 			g.setColor(lightBrown);
 			g.fillRect(565, 260, 65, 40);
+			g.setColor(Color.white);
 			g.drawString(round + "", 565, 300);
 		}
 
@@ -658,10 +657,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				
 				System.out.println(m.getX() + " " + m.getY());
 			}
-				
-				
-			
-			
 			
 			
 			//so music thing modulate for click on and off
