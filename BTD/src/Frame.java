@@ -448,9 +448,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 									&& Math.abs(bombs.get(i).getY() - testBloons.get(j).getY()) <= cannon.getR()
 									&& !(testBloons.get(j).getImageName().equals("/imgs/poppedBloon.png"))) {
 								money++;
-								//testBloons.get(j).changePicture("/imgs/poppedBloon.png");
 								testBloons.get(j).pop();
-								//testBloons.get(j).setBeenShot(true);
 								
 								if(testBloons.get(j).getColor().equals("popped")) {
 									testBloons.get(j).setBeenShot(true);
