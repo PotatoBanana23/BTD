@@ -45,3 +45,15 @@ It also was used for purchasing monkeys and placing them onto the map.
 ![MouseClick2](https://github.com/PotatoBanana23/BTD/blob/master/mouseClickImage2.PNG)
 ![MouseClick3](https://github.com/PotatoBanana23/BTD/blob/master/mouseClickImage3.PNG)
 
+###### Monkey (Tower) Classes and Darts
+
+All of our classes that involved creating Monkeys (Towers) were nearly identical. They were used to instantiate the image of the monkey and also create variables necessary to its function in the game (like position coordinates and radius). 
+
+Our dart/shooting classes were similar as they also instatiated images and important variables that were used throughout the program. However, the cannon shooting was slightly different because it had to incorporate explosions. 
+
+![MonkeyImage1](https://github.com/PotatoBanana23/BTD/blob/master/monkeyImage1.PNG)
+![ShootingImage1](https://github.com/PotatoBanana23/BTD/blob/master/shootingImage1.PNG)
+![cannonShotingImage1](https://github.com/PotatoBanana23/BTD/blob/master/cannonShooting1.PNG)
+
+
+
