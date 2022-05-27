@@ -280,43 +280,43 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		testBloons.add(new YellowBloon());
 		testBloons.add(new PinkBloon());
 		
-		//30 red balloons
-				int red = 0;
-				while (red < 10000) {
-					Bloon newBalloon;
-					int randNumber = (int) (Math.random()*10) +1;
-					if (randNumber == 1) {
-						newBalloon = new RedBloon();
-					} else if (randNumber == 2) {
-						newBalloon = new BlueBloon();
-					} else if(randNumber <= 4) {
-						newBalloon = new GreenBloon();
-					} else if (randNumber <= 7) {
-						newBalloon = new YellowBloon();
-					} else {
-						newBalloon = new PinkBloon();
-					}
-					
-					testBloons.add(newBalloon);
-					System.out.println("added");
-					
-					while (newBalloon.getDelay() < 1.0) {
-						if (newBalloon.getDelay() > 0.7) {
-							//System.out.println("breaked");
-						}
-						if (newBalloon.getImageName().equals("/imgs/poppedBloon.png")) {
-							break;
-						}
-					}
-					System.out.println("newBalloon" + red);
-					red++;
-					if (lives == 0) {
-						break;
-					}
-					if (red % 100 == 0) {
-						round++;
-					}
+		//bloon spawn
+		int red = 0;
+		while (red < 10000) {
+			Bloon newBalloon;
+			int randNumber = (int) (Math.random()*10) +1;
+			if (randNumber == 1) {
+				newBalloon = new RedBloon();
+			} else if (randNumber == 2) {
+				newBalloon = new BlueBloon();
+			} else if(randNumber <= 4) {
+				newBalloon = new GreenBloon();
+			} else if (randNumber <= 7) {
+				newBalloon = new YellowBloon();
+			} else {
+				newBalloon = new PinkBloon();
+			}
+			
+			testBloons.add(newBalloon);
+			System.out.println("added");
+			
+			while (newBalloon.getDelay() < 1.0) {
+				if (newBalloon.getDelay() > 0.7) {
+					//System.out.println("breaked");
 				}
+				if (newBalloon.getImageName().equals("/imgs/poppedBloon.png")) {
+					break;
+				}
+			}
+			System.out.println("newBalloon" + red);
+			red++;
+			if (lives == 0) {
+				break;
+			}
+			if (red % 100 == 0) {
+				round++;
+			}
+		}
 
 	}
 	
@@ -470,11 +470,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 									testBloons.get(j).setBeenShot(true);
 									testBloons.remove(j); 
 								}
-					
-								
 							}
-							
-							
 						}
 						int index = bombs.size()-1;
 						int x = bombs.get(index).getX();
