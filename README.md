@@ -63,3 +63,8 @@ This bloons class accounts for all colors of bloons that spawn during the game. 
 ![bloons1](https://github.com/PotatoBanana23/BTD/blob/master/bloons1.PNG)
 ![bloons2](https://github.com/PotatoBanana23/BTD/blob/master/bloons2.PNG)
 
+###### Range Indicator
+
+The range class was primarily for testing purposes and does not appear in the actual game, but it was used to make sure the shooting radius of all towers were correct. It paints a circle corresponding to the size for each tower radius.
+
+![range1](https://github.com/PotatoBanana23/BTD/blob/master/range1.PNG)
