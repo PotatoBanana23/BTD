@@ -13,7 +13,7 @@ game with a twist--incorporating clicking UI for monkeys to take bloons down.
 ## How to Install and Run
 
 To execute the program, import the project from GitHub onto your local IDE or clone our repo, "PotatoBanana23/BTD", on your local IDE. From there, navigate to the 
-Frame class and have the program run. From there, you can begin playing the game!
+Frame class and have the program run. Now, you can begin playing the game!
 
 ## How to Use the Project
 
