@@ -3,7 +3,7 @@ Final BTD Project
 
 ## What the Project is
 
-Our project is a spinoff of the popular Bloons Tower Defense franchise. The original game is a tower defense game, where
+Our project is a spinoff of the popular Bloons Tower Defense franchise. The opriginal game is a tower defense game, where
 towers (monkey's as they're called in this game) are placed onto the map. The towers take down bloons and prevents them from
 reaching the finish line. Our group all has fond memories of the game from when we were younger and decided to recreate this 
 game with a twist--incorporating clicking UI for monkeys to take bloons down. 
@@ -56,5 +56,10 @@ Our dart/shooting classes were similar as they also instatiated images and impor
 ![tackShootingImage1](https://github.com/PotatoBanana23/BTD/blob/master/tackShooting1.PNG)
 ![cannonShotingImage1](https://github.com/PotatoBanana23/BTD/blob/master/cannonShooting1.PNG)
 
+###### Bloons
 
+This bloons class accounts for all colors of bloons that spawn during the game. It was used to check the popping layer of the balloon and keep the balloons on the track. 
+
+![bloons1](https://github.com/PotatoBanana23/BTD/blob/master/bloons1.PNG)
+![bloons2](https://github.com/PotatoBanana23/BTD/blob/master/bloons2.PNG)
 
