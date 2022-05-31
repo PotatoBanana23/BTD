@@ -53,6 +53,7 @@ Our dart/shooting classes were similar as they also instatiated images and impor
 
 ![MonkeyImage1](https://github.com/PotatoBanana23/BTD/blob/master/monkeyImage1.PNG)
 ![ShootingImage1](https://github.com/PotatoBanana23/BTD/blob/master/shootingImage1.PNG)
+![tackShootingImage1](https://github.com/PotatoBanana23/BTD/blob/master/cannonShooting1.PNG)
 ![cannonShotingImage1](https://github.com/PotatoBanana23/BTD/blob/master/cannonShooting1.PNG)
 
 
