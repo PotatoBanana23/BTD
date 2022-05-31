@@ -3,7 +3,7 @@ Final BTD Project
 
 ## What the Project is
 
-Our project is a spinoff of the popular Bloons Tower Defense franchise. The opriginal game is a tower defense game, where
+Our project is a spinoff of the popular Bloons Tower Defense franchise. The original game is a tower defense game, where
 towers (monkey's as they're called in this game) are placed onto the map. The towers take down bloons and prevents them from
 reaching the finish line. Our group all has fond memories of the game from when we were younger and decided to recreate this 
 game with a twist--incorporating clicking UI for monkeys to take bloons down. 
