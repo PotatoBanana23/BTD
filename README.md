@@ -8,7 +8,7 @@ towers (monkey's as they're called in this game) are placed onto the map. The to
 reaching the finish line. Our group all has fond memories of the game from when we were younger and decided to recreate this 
 game with a twist--incorporating clicking UI for monkeys to take bloons down. 
 
-![Gameplay](https://github.com/PotatoBanana23/SpaceRace/blob/master/TrafficMania/2022-01-27%2008-25-47%20(1).gif)
+![Gameplay](https://github.com/PotatoBanana23/BTD/blob/master/ezgif.com-gif-maker.gif)
 
 ## How to Install and Run
 
